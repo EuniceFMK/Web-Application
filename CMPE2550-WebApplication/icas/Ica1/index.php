@@ -6,9 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-    include 'includes/footer.php'
+   <?php
+    
     echo "Hello world";
-    ?>
+     include 'includes/footer.php';
+    ?> 
+    <?php
+   
+   
+    ?> 
 </body>
 </html>
