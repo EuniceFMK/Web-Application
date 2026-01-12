@@ -1,0 +1,69 @@
+/* STYLE DE LA PAGE DEMOS */
+
+h1 {
+    font-size: 2.4rem;
+    color: #d81b60;
+    text-align: center;
+}
+
+.demo-nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.home-link {
+    background: #f48fb1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #880e4f;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(214, 56, 129, 0.2);
+    transition: 0.3s;
+}
+
+.home-link:hover {
+    background: #d81b60;
+    color: white;
+    transform: translateY(-4px);
+}
+
+/* LISTE DEMOS */
+.demo-list {
+    width: 70%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 25px 30px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(214, 56, 129, 0.2);
+}
+
+.demo-list h2 {
+    text-align: center;
+    color: #ad1457;
+    font-size: 1.8rem;
+}
+
+.demo-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.demo-list li {
+    text-align: center;
+    margin: 12px 0;
+}
+
+.demo-list a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #c2185b;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.demo-list a:hover {
+    color: #880e4f;
+    text-shadow: 0 2px 6px rgba(214, 56, 129, 0.3);
+}
+
