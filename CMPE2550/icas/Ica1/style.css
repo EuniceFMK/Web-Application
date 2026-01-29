@@ -1,0 +1,149 @@
+/* Reset */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Page background */
+
+body {
+    background: #ffffff;
+    padding: 20px;
+}
+
+/* Main container look */
+
+header {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 15px;
+    background: #e6e6e6;
+    border: 1px solid #bcbcbc;
+    margin-bottom: 6px;
+    text-shadow: 1px 1px #fff;
+}
+
+/* All sections */
+section {
+    background: #e9e9ef;
+    border: 1px solid #c0c0c0;
+    margin-bottom: 6px;
+    padding: 10px;
+}
+
+/* Section titles */
+section h3,
+section>div:first-child {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+/* Generic row layout (2 columns) */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 4px 0;
+    font-size: 14px;
+}
+
+/* Left labels */
+.label {
+    font-weight: bold;
+    padding-left: 5px;
+    
+}
+.value {
+    padding-left: 10px;
+}
+/* Lists */
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 3px;
+}
+
+/* Array list centered */
+.value ol {
+    text-align: center;
+    padding-left: 0;
+}
+
+.value ol li {
+    list-style-position: inside;
+}
+
+/* Form styling */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 6px;
+    align-items: center;
+    font-size: 14px;
+}
+
+form input[type="text"] {
+    width: 160px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+form input[type="range"] {
+    width: 150px;
+    margin-left: 10px;
+}
+
+form input[type="submit"] {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 8px auto 0 auto;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/* Result message */
+
+#howmuch-sec {
+    text-align: center;
+    font-weight: bold;
+   
+}
+
+/* Status section */
+
+#status-sec {
+    text-align: center;
+    font-size: 13px;
+    background: #f0f0f0;
+    border: 1px solid #c0c0c0;
+    padding: 4px;
+    margin-top: 5px;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    background: #efefef;
+    border: 1px solid #c0c0c0;
+    padding: 6px;
+    margin-top: 6px;
+}
+label{
+    grid-column: 1/2;
+    text-align: right;
+}
+
+aside.value.tab{
+    grid-column: 1/3;
+    text-align: left;
+}
