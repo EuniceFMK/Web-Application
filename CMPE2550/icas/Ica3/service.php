@@ -12,6 +12,8 @@ foreach ($_GET as $key => $value) {
 if (isset($clean["action"])) {
     if ($clean["action"] == "GetAllAuthor")
         GetAllAuthor();
+    if($clean["action"]=="GetBooksByAuthors"&& isset($clean["au_id"]))
+        GetBooksByAuthors($clean["au_id"]);
 }
 
 echo (json_encode($output));
@@ -24,8 +26,7 @@ function GetAllAuthor()
     $queryOutput = null;
     if ($queryOutput = mySqlQuery($query)) {
         $output["authors"] = $queryOutput->fetch_all();
-        error_log(json_encode($output["titles"]));
-
+        error_log(json_encode($output["authors"]));
     }
     else{
         error_log("Something went wrong with the query!");
