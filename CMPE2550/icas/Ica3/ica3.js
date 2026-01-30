@@ -116,8 +116,9 @@ function loadBooks(response) {
     if (!response.books || response.books.length == 0) {
         $("#bookresult").hide();
         $("#outputres").empty();
-        
-        $("#outputres").append("<tr><td colspan='5'>No books found</td></tr>");
+        let out = $("<tr>");
+        out.append($("<td>").text("No books found"));
+        $("#outputres").append(out);
         return;
 
     }
@@ -137,9 +138,5 @@ function loadBooks(response) {
     num.addClass("count-row");
     num.append($("<td>").text(`Retrieved: ${response.books.length} book records`))
     
-    book.append(`
-        <tr class="count-row">
-            <td colspan="4">Retrieved: ${response.books.length} book records</td>
-        </tr>
-    `);
+    book.append(num);
 }
