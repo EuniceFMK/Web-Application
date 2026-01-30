@@ -1,14 +1,22 @@
 <?php
+/*
+    Programmer:   Ngadjou Eunice Fmukam
+    Date:         January 30, 2026
+    FileName:     service.php
+    Description:  PHP service file to handle AJAX requests for ICA 3.
+    */
 require_once "db.php";
 
 $output = array();
 $clean = array();
 
+// Sanitize and clean input parameters
 foreach ($_GET as $key => $value) {
     $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))] =
         trim($connection->real_escape_string(strip_tags(htmlspecialchars($value))));
 }
 
+// Handle actions based on the 'action' parameter
 if (isset($clean["action"])) {
     if ($clean["action"] == "GetAllAuthor")
         GetAllAuthor();
@@ -19,10 +27,16 @@ if (isset($clean["action"])) {
 echo (json_encode($output));
 die();
 
+/**
+ * FunctionName:    GetAllAuthor
+ * Inputs:          None
+ * Outputs:        None
+ * Decription:     Retrieves all authors from the database and stores them in the global output array.
+ */
 function GetAllAuthor()
 {
     global $output;
-    $query = "SELECT au_id,au_lname,au_fname,phone FROM authors";
+    $query = "SELECT au_id,au_lname,au_fname,phone FROM authors ORDER BY au_lname";
     $queryOutput = null;
     if ($queryOutput = mySqlQuery($query)) {
         $output["authors"] = $queryOutput->fetch_all();
@@ -32,10 +46,16 @@ function GetAllAuthor()
         error_log("Something went wrong with the query!");
     }
 }
+/**
+ * FunctionName:    GetBooksByAuthors
+ * Inputs:          $au_id - Author ID to retrieve books for
+ * Outputs:        None
+ * Decription:     Retrieves books by a specific author and stores them in the global output array.
+ */
 
 function GetBooksByAuthors($au_id){
     global $output;
-    $query="SELECT t.title, t.type,t.price 
+    $query="SELECT t.title_id,t.title, t.type,t.price 
             FROM titles t 
             JOIN titleauthor ta
             ON t.title_id=ta.title_id 
