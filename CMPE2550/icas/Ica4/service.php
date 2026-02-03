@@ -20,10 +20,10 @@ foreach ($_GET as $key => $value) {
 if (isset($clean["action"])) {
     if ($clean["action"] == "GetAllAuthor")
         GetAllAuthor();
-    if($clean["action"]=="GetBooksByAuthors"&& isset($clean["au_id"]))
+    if ($clean["action"] == "GetBooksByAuthors" && isset($clean["au_id"]))
         GetBooksByAuthors($clean["au_id"]);
-    if($clean["action"]== "DeleteBooksByAuthors"&& isset($clean["au_id"]))
-        DeleteBooksByAuthors($clean["au_id"]);
+    if ($clean["action"] == "DeleteBooksByAuthors" && isset($clean["titleID"]))
+        DeleteBooksByAuthors($clean["titleID"]);
 }
 
 echo (json_encode($output));
@@ -43,8 +43,7 @@ function GetAllAuthor()
     if ($queryOutput = mySqlQuery($query)) {
         $output["authors"] = $queryOutput->fetch_all();
         error_log(json_encode($output["authors"]));
-    }
-    else{
+    } else {
         error_log("Something went wrong with the query!");
     }
 }
@@ -55,24 +54,37 @@ function GetAllAuthor()
  * Decription:     Retrieves books by a specific author and stores them in the global output array.
  */
 
-function GetBooksByAuthors($au_id){
+function GetBooksByAuthors($au_id)
+{
     global $output;
-    $query="SELECT t.title_id,t.title, t.type,t.price 
+    $query = "SELECT t.title_id,t.title, t.type,t.price 
             FROM titles t 
             JOIN titleauthor ta
             ON t.title_id=ta.title_id 
             WHERE ta.au_id='$au_id'";
 
     $results = mySqlQuery($query);
-    if($results&&$results->num_rows>0){
-        $output["books"]=$results->fetch_all();
+    if ($results && $results->num_rows > 0) {
+        $output["books"] = $results->fetch_all();
 
-    }
-    else
-        $output["books"]=[];
+    } else
+        $output["books"] = [];
 
 }
 
-function DeleteBooksByAuthors($au_id){
-    
+function DeleteBooksByAuthors($titleID)
+{
+    global $clean, $output;
+    $query = "DELETE FROM titles WHERE title_id ='$titleID'";
+    error_log($query);
+
+    $result = -1;
+
+    if (($result = mySqlNonQuery($query)) >= 0) {
+        error_log("$result records were successfully deleted");
+        $output["status"] = "$result records were sucessfully deleted ";
+    } else {
+        error_log("There was a problem with the query!");
+        $output["status"] = "There was a problem with the query!";
+    }
 }

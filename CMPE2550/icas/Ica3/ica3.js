@@ -134,9 +134,9 @@ function loadBooks(response) {
         book.append(row);
 
     });
-    let num=$("<tr>")
+    let num=$("<p>")
     num.addClass("count-row");
-    num.append($("<td>").text(`Retrieved: ${response.books.length} book records`))
+    num.text(`Retrieved: ${response.books.length} book records`);
     
     book.append(num);
 }
