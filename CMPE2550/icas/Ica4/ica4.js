@@ -15,6 +15,9 @@ $(document).ready(function () {
         ajaxError
     );
     $("#bookresult").hide();  // Hide book results section initially
+    $("#delete").click(function(){
+        alert("Delete button clicked");
+    });
 })
 
 /**
@@ -103,6 +106,25 @@ function getBooks(authid) {
 }
 
 /**
+ * FunctionName:    getBooks
+ * Inputs:          authid - Author ID to retrieve books for
+ * Outputs:        None
+ * Decription:     Retrieves and displays books for a specific author.
+ */
+function Deletebook(authid) {
+    CallAjax("service.php",
+        "GET",
+        {
+            action: "GetBooksByAuthors",
+            au_id: authid
+        },
+        "json",
+        loadBooks,
+        ajaxError
+    );
+}
+
+/**
  * FunctionName:    loadBooks
  * Inputs:          response - Response data from the AJAX request
  * Outputs:        None
@@ -126,6 +148,8 @@ function loadBooks(response) {
     response.books.forEach(author => {
 
         let row = $("<tr>");
+        
+        row.append($("<td>").append($("<button id='delete'>").text("Delete")).append($("<button id='edit'>").text("Edit")));
         row.append($("<td>").text(author[0]));
         row.append($("<td>").text(author[1]));
         row.append($("<td>").text(author[2]));
@@ -134,9 +158,9 @@ function loadBooks(response) {
         book.append(row);
 
     });
-    let num=$("<tr>")
+    let num=$("<p>")
     num.addClass("count-row");
-    num.append($("<td>").text(`Retrieved: ${response.books.length} book records`))
+    num.text(`Retrieved: ${response.books.length} book records`);
     
     book.append(num);
 }

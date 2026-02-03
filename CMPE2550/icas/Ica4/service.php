@@ -22,6 +22,8 @@ if (isset($clean["action"])) {
         GetAllAuthor();
     if($clean["action"]=="GetBooksByAuthors"&& isset($clean["au_id"]))
         GetBooksByAuthors($clean["au_id"]);
+    if($clean["action"]== "DeleteBooksByAuthors"&& isset($clean["au_id"]))
+        DeleteBooksByAuthors($clean["au_id"]);
 }
 
 echo (json_encode($output));
@@ -69,4 +71,8 @@ function GetBooksByAuthors($au_id){
     else
         $output["books"]=[];
 
+}
+
+function DeleteBooksByAuthors($au_id){
+    
 }
