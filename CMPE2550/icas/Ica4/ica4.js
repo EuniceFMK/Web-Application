@@ -4,6 +4,8 @@
  *Description:  JavaScript file to handle AJAX requests and DOM manipulation for ICA 3.
 */
 
+let currentauth = null;
+let j = 0;
 $(document).ready(function () {
 
     // Load all authors when the document is ready
@@ -91,6 +93,7 @@ function ajaxError(err) {
  * Decription:     Retrieves and displays books for a specific author.
  */
 function getBooks(authid) {
+    currentauth = authid;
     CallAjax("service.php",
         "GET",
         {
@@ -109,7 +112,7 @@ function getBooks(authid) {
  * Outputs:        None
  * Decription:     Retrieves and displays books for a specific author.
  */
-function Deletebook(titleID) {
+function Deletebook(titleID, au_id) {
     CallAjax("service.php",
         "GET",
         {
@@ -117,9 +120,33 @@ function Deletebook(titleID) {
             titleID: titleID
         },
         "json",
-        loadBooks,
+        function (response) {
+            if (response)
+                getBooks(au_id);
+            console.log(response);
+        },
         ajaxError
     );
+}
+
+function Editbook(titleID) {
+    CallAjax("service.php",
+        "GET",
+        {
+            action: "EditBook",
+            titleID: titleID
+        },
+        "json",
+        function (response) {
+            if (response)
+                getBooks(au_id);
+            console.log(response);
+        },
+        ajaxError
+    );
+    // Implement edit functionality here
+    console.log(`Edit book with title ID: ${titleID}`);
+    // You can open a modal or redirect to an edit page with the book details
 }
 
 /**
@@ -130,6 +157,7 @@ function Deletebook(titleID) {
  */
 function loadBooks(response) {
     let book = $("#books-body");
+    let i = 0;
     $("#bookresult").show();
     book.empty();
     console.log(response);
@@ -146,18 +174,20 @@ function loadBooks(response) {
     response.books.forEach(author => {
 
         let row = $("<tr>");
+        i = 0;
         console.log(`${author[0]}`);
         row.append($("<td>")
-            .append($(`<button class="delete" onclick = "Deletebook('${author[0]}')">`).text("Delete"))
-            .append($("<button class='edit'>").text("Edit")));
+            .append($(`<button class="delete" onclick = "Deletebook('${author[0]}','${currentauth}')">`).text("Delete"))
+            .append($(`<button class='edit'>`).text("Edit")));
         row.append($("<td>").text(author[0]));
         row.append($("<td>").text(author[1]));
-        row.append($("<td>").text(author[2]));
+        row.append($("<td class='typetd'>").text(author[2]));
         row.append($("<td>").text(author[3]));
 
         book.append(row);
 
     });
+    j = i;
     let num = $("<p>")
     num.addClass("count-row");
     num.text(`Retrieved: ${response.books.length} book records`);
@@ -165,10 +195,26 @@ function loadBooks(response) {
     book.append(num);
 }
 
-function removebook(response) {
-    if (response.status) {
-        let row = $(".delete").closest("tr");
-        row.remove();
-    }
 
-}
+$(document).on("click", ".edit", function () {
+    CallAjax("service.php",
+        "GET",
+        {
+            action: "GetAllTypes",
+        },
+        "json",
+        function (response) {
+            let dropList = $("<select>");
+            for (let d = 0; d < response.types.length; d++) {
+                dropList.append($("<option>").text(response.types[d][0]));
+            }
+            dropList.append("</select>");
+            $(".typetd").empty();
+            $(".typetd").append(dropList);
+            console.log(response);
+        },
+        ajaxError
+    );
+    // Implement edit functionality here
+  
+});

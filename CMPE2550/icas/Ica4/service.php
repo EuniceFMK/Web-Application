@@ -24,6 +24,10 @@ if (isset($clean["action"])) {
         GetBooksByAuthors($clean["au_id"]);
     if ($clean["action"] == "DeleteBooksByAuthors" && isset($clean["titleID"]))
         DeleteBooksByAuthors($clean["titleID"]);
+    if ($clean["action"] == "EditBook" && isset($clean["tite_id"]))
+        EditBookbyTitleID($clean["titleID"]);
+    if($clean["action"] == "GetAllTypes")
+        GetAllTypes();
 }
 
 echo (json_encode($output));
@@ -75,16 +79,54 @@ function GetBooksByAuthors($au_id)
 function DeleteBooksByAuthors($titleID)
 {
     global $clean, $output;
-    $query = "DELETE FROM titles WHERE title_id ='$titleID'";
-    error_log($query);
+    $query2 = "DELETE from titleauthor where title_id liKe '$titleID'";
+    $query1 = "DELETE FROM titles WHERE title_id ='$titleID'";
+    error_log("$query1" . " $query2");
 
     $result = -1;
 
-    if (($result = mySqlNonQuery($query)) >= 0) {
+    if (($result = mySqlNonQuery($query2)) >= 0 && ($result = mySqlNonQuery($query1)) >= 0) {
         error_log("$result records were successfully deleted");
         $output["status"] = "$result records were sucessfully deleted ";
     } else {
         error_log("There was a problem with the query!");
         $output["status"] = "There was a problem with the query!";
+    }
+}
+
+function EditBookbyTitleID($titleID)
+{
+    global $clean, $output;
+    $title = $clean["title"];
+    $price = $clean["price"];
+    $type = $clean["type"];
+    $query = "UPDATE titles
+              SET title = '$title',
+                  type ='$type',
+                  price ='$price'
+              WHERE title_id = '$titleID'";
+    error_log($query);
+
+    $result = -1;
+
+    if (($result = mySqlNonQuery($query)) >= 0) {
+        error_log("$result records were succesfully deleted");
+        $output["status"] = "$result records were successfully deleted";
+    } else {
+        error_log("There was a problem with the query!");
+        $output["status"] = "There was a problem with the query!";
+    }
+
+}
+
+function GetAllTypes(){
+     global $output;
+    $query = "SELECT distinct type FROM titles ORDER BY type ";
+    $queryOutput = null;
+    if ($queryOutput = mySqlQuery($query)) {
+        $output["types"] = $queryOutput->fetch_all();
+        error_log(json_encode($output["types"]));
+    } else {
+        error_log("Something went wrong with the query!");
     }
 }
