@@ -1,8 +1,10 @@
-/*Progranmer:   Ngadjou Eunice Fmukam
- *Date:         January 30, 2026
- *FileName:     ica3.js
- *Description:  JavaScript file to handle AJAX requests and DOM manipulation for ICA 3.
-*/
+/**
+ * Programmer Block
+ *   Name: Eunice Fmukam Ngadjou
+ *  Date: January 30, 2026
+ *  Assignment: ICA 4 - Author and Book Management
+ *  Description: JavaScript code to handle AJAX requests and DOM manipulation for ICA 4.
+ */
 
 let currentauth = null;
 let j = 0;
@@ -131,6 +133,13 @@ function Deletebook(titleID, au_id) {
     );
 }
 
+
+/**
+ * FunctionName:    Editbook
+ * Inputs:          titleID - ID of the book to be edited
+ * Outputs:        None
+ * Decription:     Sends an AJAX request to edit a book and refreshes the book list on success.
+ */
 function Editbook(titleID) {
     CallAjax("service.php",
         "GET",
@@ -195,6 +204,7 @@ function loadBooks(response) {
 }
 
 
+//Edit button click event handler
 $(document).on("click", ".edit", function () {
     let btn = $(this);
     CallAjax("service.php",
@@ -211,6 +221,14 @@ $(document).on("click", ".edit", function () {
 
 });
 
+
+/**
+ * FunctionName:    EditCallBack
+ * Inputs:          response - Response data from the AJAX request
+ *                  btn - The edit button that was clicked
+ * Outputs:        None
+ * Decription:     Transforms the book row into an editable form with input fields and a dropdown for book types, allowing the user to update or cancel their changes.
+ */
 function EditCallBack(response, btn) {
     let row = btn.closest("tr");
     let typeCell = row.find(".type-cell");
@@ -241,6 +259,7 @@ function EditCallBack(response, btn) {
 
 }
 
+//Update button click event handler
 $(document).on("click", ".update", function () {
     let btn = $(this);
     let row = btn.closest("tr");
@@ -270,6 +289,7 @@ $(document).on("click", ".update", function () {
     );
 }
 })
+
 $(document).on("click", ".cancel", function () {
     let btn = $(this);
     let row = btn.closest("tr");

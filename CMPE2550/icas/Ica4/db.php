@@ -52,6 +52,13 @@ function mySqlQuery($query)
     return $results;
 }
 
+/**
+ * FunctionName:   mySqlNonQuery
+ * Inputs:         $query - SQL query string to be executed (for INSERT, UPDATE, DELETE)
+ * Outputs:        Number of affected rows on success, -1 on failure
+ * Decription:     Executes a MySQL non-query (INSERT, UPDATE, DELETE) and returns the number of affected rows.
+ */
+
 function mySqlNonQuery($query)
 {
     global $connection;

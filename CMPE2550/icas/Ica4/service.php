@@ -76,6 +76,12 @@ function GetBooksByAuthors($au_id)
 
 }
 
+/**
+ * FunctionName:    DeleteBooksByAuthors
+ * Inputs:          $titleID - ID of the book to be deleted
+ * Outputs:        None
+ * Decription:     Deletes a book and its associated author records from the database.
+ */
 function DeleteBooksByAuthors($titleID)
 {
     global $clean, $output;
@@ -94,6 +100,12 @@ function DeleteBooksByAuthors($titleID)
     }
 }
 
+/**
+ * FunctionName:   EditBookbyTitleID
+ * Inputs:         $titleID - ID of the book to be edited
+ * Outputs:        None
+ * Decription:    Updates a book's details in the database based on the provided title ID and input parameters, and stores the status of the operation in the global output array.
+ */
 function EditBookbyTitleID($titleID)
 {
     global $clean, $output;
@@ -120,6 +132,12 @@ function EditBookbyTitleID($titleID)
     error_log(json_encode($clean));
 }
 
+/**
+ * FunctionName:   GetAllTypes
+ * Inputs:         None
+ * Outputs:        None
+ * Decription:     Retrieves all book types from the database and stores them in the global output array.
+ */
 function GetAllTypes()
 {
     global $output;
