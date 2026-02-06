@@ -290,6 +290,7 @@ $(document).on("click", ".update", function () {
 }
 })
 
+//Cancel button event handler
 $(document).on("click", ".cancel", function () {
     let btn = $(this);
     let row = btn.closest("tr");
