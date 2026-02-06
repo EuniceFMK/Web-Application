@@ -28,6 +28,8 @@ if (isset($clean["action"])) {
         EditBookbyTitleID($clean["titleID"]);
     if ($clean["action"] == "GetAllTypes")
         GetAllTypes();
+    if($clean["action"] == "GetBooksByType")
+        GetBooksByType($clean["type"]);
 }
 
 echo (json_encode($output));

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="ica5.js"></script>
+    <link rel="stylesheet" href="ica5.css">
+</head>
+
+<body>
+    <header>Assignment 05-mySQL Data Retrieval</header>
+    <div id="main">
+        <table>
+            <thead>
+                <th>Get Books</th>
+                <th>Author Id</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Phone</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <div id="bookresult">
+            <table>
+                <thead>
+                    <th>Action</th>
+                    <th>Title Id</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    
+                </thead>
+                <tbody id="books-body"></tbody>
+            </table>
+            
+        </div>
+        <div id="outputres"></div>
+    </div>
+    <form action="" method="post">
+        <label for=""> Title ID:</label>
+        <input type="text" id="titleIDInput" placeholder="Supply the Book's ID">
+        <label for="">Title:</label>
+        <input type="text" id="titleInput" placeholder="Supply the Book's name">
+        <label for="">Type:</label>
+        <select name="" id="typeSelect">
+
+        </select>
+        <label for="">Price:</label>
+        <input type="text" id="priceInput" placeholder="Supply the Book's cost">
+        <label for="">Author(s)</label>
+        <select name="" id="authorSelect">
+        </select>
+        <button type="button">Add Book</button>
+    </form>
+
+</body>
+
+</html>
