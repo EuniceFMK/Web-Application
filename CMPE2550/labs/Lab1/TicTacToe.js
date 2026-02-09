@@ -2,12 +2,12 @@
     Name: Eunice Fmukam Ngadjou
     Class: CMPE 2550 Web Application Development    
     Date: January 20, 2025
-    Assignment: ICA 2 - Tic Tac Toe Game
-    Description: JavaScript code to handle the Tic Tac Toe game logic and AJAX interactions.
+    Assignment: Lab 1 - Othello Game
+    Description: JavaScript code to handle the Othello game logic and AJAX interactions.
 */
 let gameOver = false;           // Flag to track if the game is over
 $(document).ready(function () {
-    
+
     CallAjax("gameflow.php", "GET", { action: "InitGame" }, "json", initSuccess, err);  // Initialize the game on page load
     $("#nw").click(newGame);    // Start a new game when "New Game" button is clicked
 
@@ -51,7 +51,7 @@ function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
     ajaxOptions["dataType"] = dataType;
     ajaxOptions["success"] = successCallback;
     ajaxOptions["error"] = errorCallback;
-    console.log(ajaxOptions[data]);
+    console.log(ajaxOptions);  // Log AJAX options for debugging
     return $.ajax(ajaxOptions);
 }
 /**
@@ -86,18 +86,18 @@ function newGame() {
  * Decription:      Checks if the board is full (draw).
  */
 function success(response) {
-    
+
     console.log(response);
     if (response.board) {
-        for (let r = 0; r < 3; r++) {
-            for (let c = 0; c < 3; c++) {
+        for (let r = 0; r < 8; r++) {
+            for (let c = 0; c < 8; c++) {
                 let cell = $("#" + r + "_" + c);
                 cell.removeClass("xCell oCell");  // Clear existing classes
                 cell.val(response.board[r][c]);  // Set cell value
-                if (response.board[r][c] === "X") {
+                if (response.board[r][c] == "X") {
                     cell.addClass("xCell");    // Add class for X
                 }
-                else if (response.board[r][c] === "O") {
+                else if (response.board[r][c] == "O") {
                     cell.addClass("oCell");   // Add class for O
                 }
             }
@@ -139,13 +139,13 @@ function initSuccess(response) {
  */
 function playMove(row, col) {
     console.log("In playMove");
-let data =
-{
-            action: "PlayMove",
-            row: row,
-            col: col
-        }
-console.log(data);
+    let data =
+    {
+        action: "PlayMove",
+        row: row,
+        col: col
+    }
+    console.log(data);
     // Send AJAX request to play the move
     CallAjax(
         "gameflow.php",
@@ -165,19 +165,19 @@ console.log(data);
 function updateBoard(response) {
     console.log(response);
     $("#names").text(response.status);  // Update game status message
-    
+
     // Update the board based on the response
     if (response.board) {
         // Iterate through the board and update each cell
-        for (let r = 0; r < 3; r++) {
-            for (let c = 0; c < 3; c++) {
+        for (let r = 0; r < 8; r++) {
+            for (let c = 0; c < 8; c++) {
                 let cell = $("#" + r + "_" + c);   // Select the cell by its ID
                 cell.removeClass("xCell oCell");   // Remove existing classes
                 cell.val(response.board[r][c]);   // Set the cell value
-                if (response.board[r][c] === "X") {
+                if (response.board[r][c] == "X") {
                     cell.addClass("xCell");   // Add class for X
                 }
-                else if (response.board[r][c] === "O") {
+                else if (response.board[r][c] == "O") {
                     cell.addClass("oCell");   // Add class for O
                 }
             }
