@@ -34,29 +34,30 @@
                     <th>Title</th>
                     <th>Type</th>
                     <th>Price</th>
-                    
+
                 </thead>
                 <tbody id="books-body"></tbody>
             </table>
-            
+
         </div>
         <div id="outputres"></div>
     </div>
-    <form action="" method="post">
+    <form id="addBookForm">
         <label for=""> Title ID:</label>
-        <input type="text" id="titleIDInput" placeholder="Supply the Book's ID">
+        <input name="TiID" type="text" id="titleIDInput" placeholder="Supply the Book's ID">
         <label for="">Title:</label>
-        <input type="text" id="titleInput" placeholder="Supply the Book's name">
+        <input name="titleInput" type="text" id="titleInput" placeholder="Supply the Book's name">
         <label for="">Type:</label>
-        <select name="" id="typeSelect">
-
+        <select name="typeSelect" id="typeSelect">
+            <option value="BookGenre">Choose a book genre</option>
         </select>
         <label for="">Price:</label>
-        <input type="text" id="priceInput" placeholder="Supply the Book's cost">
+        <input name="priceInput" type="text" id="priceInput" placeholder="Supply the Book's cost">
         <label for="">Author(s)</label>
-        <select name="" id="authorSelect">
+        <select name="authorSelect" id="authorSelect" multiple="multiple">
+            <option value="BookAuthor">Choose the Book's Author(s)</option>
         </select>
-        <button type="button">Add Book</button>
+        <button type="button" id="addBookBtn">Add Book</button>
     </form>
 
 </body>

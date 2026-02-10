@@ -16,6 +16,34 @@ $(document).ready(function () {
         loadAuthors,
         ajaxError
     );
+    CallAjax("service.php",
+        "GET",
+        { action: "GetAllTypes" },
+        "json",
+        function (response) {
+            let typeSelect = $("#typeSelect");
+
+            response.types.forEach(type => {
+                let opt = $("<option>").val(type[0]).text(type[0]);
+                typeSelect.append(opt);
+            });
+        },
+        ajaxError
+    )
+
+    CallAjax("service.php",
+        "GET",
+        { action: "GetAllAuthor" },
+        "json",
+        function (response) {
+            let authorSelect = $("#authorSelect");
+            response.authors.forEach(author => {
+                let name = author[1] + " " + author[2];
+                let opt = $("<option>").val(author[0]).text(name);
+                authorSelect.append(opt);
+            })
+        },
+        ajaxError);
     $("#bookresult").hide();  // Hide book results section initially
 
 })
@@ -229,7 +257,7 @@ function EditCallBack(response, btn) {
     let dropList = $("<select>");
     response.types.forEach(type => {
         let opt = $("<option>").val(type[0]).text(type[0]);
-        if(type[0] == typeCell.data("oldContent")){
+        if (type[0] == typeCell.data("oldContent")) {
             typeCell.data("oldContent", type[0]);
             opt.prop("selected", true);
         }
@@ -247,28 +275,28 @@ $(document).on("click", ".update", function () {
     let newtype = row.find("select").val();
     let newtitle = row.find(".titleinput").val();
     let newprice = row.find(".priceinput").val();
-    if(isNaN(newprice) || newprice.trim() === ""){
+    if (isNaN(newprice) || newprice.trim() === "") {
         alert("Please enter a valid number for price.");
         return;
-    }else{
-    CallAjax("service.php",
-        "GET",
-        {
-            action: "EditBook",
-            title:newtitle,
-            type:newtype,
-            price:newprice,
-            titleID: row.data("titleid")
-        },
-        "json",
-        function (response) {
-            if (response) {
-                getBooks(currentauth);
-            }
-        },
-        ajaxError
-    );
-}
+    } else {
+        CallAjax("service.php",
+            "GET",
+            {
+                action: "EditBook",
+                title: newtitle,
+                type: newtype,
+                price: newprice,
+                titleID: row.data("titleid")
+            },
+            "json",
+            function (response) {
+                if (response) {
+                    getBooks(currentauth);
+                }
+            },
+            ajaxError
+        );
+    }
 })
 $(document).on("click", ".cancel", function () {
     let btn = $(this);
@@ -277,11 +305,37 @@ $(document).on("click", ".cancel", function () {
     let actionCell = row.find(".action-cell");
     let titleCell = row.find(".title-cell");
     let priceCell = row.find(".price-cell");
-    let typeCell  = row.find(".type-cell");
+    let typeCell = row.find(".type-cell");
 
     // Restore old values
     actionCell.html(actionCell.data("oldContent"));
     titleCell.text(titleCell.data("oldContent"));
     priceCell.text(priceCell.data("oldContent"));
     typeCell.text(typeCell.data("oldContent"));
+});
+
+$(document).on("click", "#addBookBtn", function () {
+    let titleID = $("#titleIDInput").val();
+    let title = $("#titleInput").val();
+    let type = $("#typeSelect").val();
+    let price = $("#priceInput").val();
+    let authors = $("#authorSelect").val(); // tableau (multiple)
+    console.log(authors);
+    CallAjax("service.php",
+        "GET",
+        {
+            action: "AddBook",
+            TitleID: titleID,
+            title: title,
+            type: type,
+            price: price,
+            author: authors
+        },
+        "json",
+        function (response) {
+            alert(response.status);
+            getBooks(currentauth);
+        },
+        ajaxError
+    );
 });
