@@ -12,9 +12,19 @@ $clean = array();
 
 // Sanitize and clean input parameters
 foreach ($_GET as $key => $value) {
+    if (is_array($value)) {
+        $clean[$key] = $value;   // NE PAS nettoyer un array ici
+    } else {
     $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))] =
         trim($connection->real_escape_string(strip_tags(htmlspecialchars($value))));
+    }
 }
+
+$titleId = $clean["TitleID"] ?? "";
+$titleInput = $clean["title"] ?? "";
+$typeInput = $clean["type"] ?? "";
+$priceInput = $clean["price"] ?? "";
+$authorInput = $clean["author"] ?? [];
 
 // Handle actions based on the 'action' parameter
 if (isset($clean["action"])) {
@@ -28,10 +38,14 @@ if (isset($clean["action"])) {
         EditBookbyTitleID($clean["titleID"]);
     if ($clean["action"] == "GetAllTypes")
         GetAllTypes();
-    if($clean["action"] == "GetBooksByType")
-        GetBooksByType($clean["type"]);
+    if ($clean["action"] == "AddBook")
+        AddBook();
+
 }
 
+// if($_SERVER["REQUEST_METHOD"] == "POST"){
+//     if()
+// }
 echo (json_encode($output));
 die();
 
@@ -53,6 +67,8 @@ function GetAllAuthor()
         error_log("Something went wrong with the query!");
     }
 }
+
+
 /**
  * FunctionName:    GetBooksByAuthors
  * Inputs:          $au_id - Author ID to retrieve books for
@@ -133,4 +149,48 @@ function GetAllTypes()
     } else {
         error_log("Something went wrong with the query!");
     }
+}
+
+function AddBook()
+{
+    global $output, $titleId, $titleInput, $typeInput, $priceInput, $authorInput;
+    if ($typeInput == "BookGenre") {
+        $output["status"] = "Please select a valid book type";
+        return;
+    }
+    if (!is_array($authorInput) || count($authorInput) == 0) {
+        $output["status"] = "Please select at least one author";
+        return;
+    }
+    if (!is_numeric($priceInput) || $priceInput <= 0) {
+        $output["status"] = "Please enter a valid price greater than 0";
+        return;
+    }
+    if ($titleInput == "") {
+        $output["status"] = "Please enter a valid title";
+        return;
+    }
+    if ($titleId == "") {
+        $output["status"] = "Please enter a valid titleId";
+        return;
+    }
+
+    $queryTitle = "INSERT INTO titles (title_id, title, type, price)
+        VALUES ('$titleId', '$titleInput', '$typeInput', '$priceInput')";
+    if (mySqlNonQuery($queryTitle) < 0) {
+        $output["status"] = "Error adding book";
+        return;
+    }
+    $authorOrder = 1;
+    $royalty = 100 / count($authorInput);
+
+    foreach ($authorInput as $au_id) {
+        $queryAuthor = "INSERT INTO titleauthor (au_id, title_id, au_ord, royaltyper)
+            VALUES ('$au_id', '$titleId', '$authorOrder', '$royalty')";
+        mySqlNonQuery($queryAuthor);
+        $authorOrder++;
+    }
+
+    $output["status"] = "Book successfully added";
+
 }
