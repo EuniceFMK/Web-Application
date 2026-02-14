@@ -118,7 +118,7 @@ function playMove()
     if (count($flips) == 0) {
         $output["status"] = "Invalid move ";  // Set error message
         $output["board"] = $_SESSION["board"];    // Return the current board
-         $output["status"] .= $_SESSION["currentPlayer"] . "'s turn";  // Update status message
+        $output["status"] .= $_SESSION["currentPlayer"] . "'s turn";  // Update status message
         return;
     }
     $_SESSION["board"][$row][$col] = $mark;            // Place the mark on the board
@@ -219,7 +219,7 @@ function newGame()
             $_SESSION["currentPlayer"] = $p2;
             $_SESSION["mark"] = "O";
         }
-        $output["status"] = $_SESSION["currentPlayer"] . " goes first (". $_SESSION["mark"] .")";   // Update status message
+        $output["status"] = $_SESSION["currentPlayer"] . " goes first (" . $_SESSION["mark"] . ")";   // Update status message
         $output["success"] = true;    // Indicate success
         $output["board"] = $_SESSION["board"];    // Return the initialized board
     }
@@ -227,7 +227,7 @@ function newGame()
 
 function getFlips($board, $row, $col, $player)
 {
-    global $DIRECTIONS;
+    global $output, $DIRECTIONS;
     if ($board[$row][$col] != "")
         return [];
     $opponent = ($player == "X") ? "O" : "X";
@@ -245,10 +245,15 @@ function getFlips($board, $row, $col, $player)
         }
         if (
             $r >= 0 && $r < 8 && $c >= 0 && $c < 8 &&
-            $board[$r][$c] === $player && count($temp) > 0
+            $board[$r][$c] == $player && count($temp) > 0
         ) {
             $flip = array_merge($flip, $temp);
         }
+
+    }
+    foreach ($flip as [$dr, $dc]) {
+        $_SESSION["Move"] = [$dr, $dc];
+         $output["Move"] = [$dr, $dc];
     }
     return $flip;
 }

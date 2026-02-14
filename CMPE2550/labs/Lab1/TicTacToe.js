@@ -7,6 +7,7 @@
 */
 let gameOver = false;           // Flag to track if the game is over
 $(document).ready(function () {
+    $("#board").hide();
 
     CallAjax("gameflow.php", "GET", { action: "InitGame" }, "json", initSuccess, err);  // Initialize the game on page load
     $("#nw").click(newGame);    // Start a new game when "New Game" button is clicked
@@ -77,7 +78,7 @@ function newGame() {
         "json",
         success,
         err);
-    $("#board").show();
+   // $("#board").show();
 }
 /**
  * FunctionName:    nullGame
@@ -129,6 +130,7 @@ function err(response) {
  * Decription:      Checks if the board is full (draw).
  */
 function initSuccess(response) {
+    $("#board").hide();
     console.log("Game Initilaized", response);
 }
 /**
@@ -183,6 +185,9 @@ function updateBoard(response) {
             }
         }
     }
+
+    if(response.)
+
 
     // Check if the game is over
     if (response.gameOver == true) {

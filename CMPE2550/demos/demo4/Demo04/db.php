@@ -7,55 +7,57 @@ function mySQLConnect()
 {
     global $connection;
 
-    $connection = new mysqli("localhost",
-                                "shanek_Tester",
-                                "My_1st_Test",
-                                "shanek_Test");
-    
-    if ($connection->error)
-            error_log("Error {$connection->errno} : {$connection->error}");
-    else
+    $connection = new mysqli(
+        "localhost",
+        "efmukamt1251_tester",
+        "My_1st_Test",
+        "efmukamt1251_Test"
+    );
+
+    if ($connection->error) {
+        error_log("Error {$connection->errno} : {$connection->error}");
+       
+    } else
         error_log("Connection created successfully!");
-    
-        
+
+
 }
 
-function mySqlQuery( $query )
+function mySqlQuery($query)
 {
     global $connection;
 
-    if ($connection == null)
-    {
+    if ($connection == null) {
         error_log("mySqlQuery : No connection established!");
         return false;
     }
-        
+
     $results = false;
 
-    if (!($results = $connection->query( $query )))
-    {
+    try {
+        $results = $connection->query($query);
+    } catch (Exception $e) {
         error_log("mySqlQuery : $connection->errno : $connection->error");
         error_log($query);
-        return false;
+        error_log();
+        return -1;
     }
 
     return $results;
 }
 
-function mySqlNonQuery( $query )
+function mySqlNonQuery($query)
 {
     global $connection;
 
-    if ($connection == null)
-    {
+    if ($connection == null) {
         error_log("mySqlQuery : No connection established!");
         return -1;
     }
 
     $result = 0;
 
-    if (!($results = $connection->query( $query )))
-    {
+    if (!($results = $connection->query($query))) {
         error_log("mySqlQuery : $connection->errno : $connection->error");
         error_log($query);
         return -1;

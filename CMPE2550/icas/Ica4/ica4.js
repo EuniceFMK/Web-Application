@@ -238,6 +238,7 @@ function EditCallBack(response, btn) {
     actionCell.data("oldContent", actionCell.html());
     titleCell.data("oldContent", titleCell.text());
     priceCell.data("oldContent", priceCell.text());
+    typeCell.data("oldContent", typeCell.html());
     actionCell.html(`
         <button class="update">Update</button>
         <button class="cancel">Cancel</button>
@@ -246,8 +247,9 @@ function EditCallBack(response, btn) {
     priceCell.html(`<input type='text' class='priceinput' value='${priceCell.data("oldContent")}'>`);
     let dropList = $("<select>");
     response.types.forEach(type => {
+        console.log(type[0]);
         let opt = $("<option>").val(type[0]).text(type[0]);
-        if(type[0] == typeCell.data("oldContent")){
+        if (type[0] == typeCell.data("oldContent")) {
             typeCell.data("oldContent", type[0]);
             opt.prop("selected", true);
         }
@@ -266,28 +268,26 @@ $(document).on("click", ".update", function () {
     let newtype = row.find("select").val();
     let newtitle = row.find(".titleinput").val();
     let newprice = row.find(".priceinput").val();
-    if(isNaN(newprice) || newprice.trim() === ""){
-        alert("Please enter a valid number for price.");
-        return;
-    }else{
-    CallAjax("service.php",
-        "GET",
-        {
-            action: "EditBook",
-            title:newtitle,
-            type:newtype,
-            price:newprice,
-            titleID: row.data("titleid")
-        },
-        "json",
-        function (response) {
-            if (response) {
-                getBooks(currentauth);
-            }
-        },
-        ajaxError
-    );
-}
+    {
+        CallAjax("service.php",
+            "GET",
+            {
+                action: "EditBook",
+                title: newtitle,
+                type: newtype,
+                price: newprice,
+                titleID: row.data("titleid")
+            },
+            "json",
+            function (response) {
+                if (response) {
+                    $("#mess").text(response.status);
+                    getBooks(currentauth);
+                }
+            },
+            ajaxError
+        );
+    }
 })
 
 //Cancel button event handler
@@ -298,11 +298,13 @@ $(document).on("click", ".cancel", function () {
     let actionCell = row.find(".action-cell");
     let titleCell = row.find(".title-cell");
     let priceCell = row.find(".price-cell");
-    let typeCell  = row.find(".type-cell");
+    let typeCell = row.find(".type-cell");
 
     // Restore old values
     actionCell.html(actionCell.data("oldContent"));
     titleCell.text(titleCell.data("oldContent"));
     priceCell.text(priceCell.data("oldContent"));
-    typeCell.text(typeCell.data("oldContent"));
+    typeCell.html(typeCell.data("oldContent"));
+    console.log(priceCell.data("oldContent"));
+    console.log(typeCell.data("oldContent"));
 });

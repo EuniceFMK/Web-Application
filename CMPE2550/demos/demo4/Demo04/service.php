@@ -1,22 +1,33 @@
 <?php
 require_once "db.php";
 
+function CleanCollection($input)
+{
+    global $connection;
+    $clean = array();
+    foreach ($input as $key => $value)
+        if (is_array($value)) {
+            $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))] = CleanCollection($value);
+        } else {
+            $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))]
+                = trim($connection->real_escape_string(strip_tags(htmlspecialchars($value))));
+        }
+
+    return $clean;
+}
+
 $output = array();
 
-$clean = array();
-foreach($_GET as $key => $value)
-    $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))] 
-        = trim($connection->real_escape_string(strip_tags(htmlspecialchars($value))));
+$clean = CleanCollection($_GET);
 
-if (isset($clean["action"]))
-{
+if (isset($clean["action"])) {
     if ($clean["action"] == "GetAllTitles")
-        GetAllTitles();  
+        GetAllTitles();
     if ($clean["action"] == "DeleteTitle")
         DeleteTitle();
 }
 
-echo(json_encode($output));
+echo (json_encode($output));
 die();
 
 function GetAllTitles()
@@ -25,12 +36,10 @@ function GetAllTitles()
 
     $query = "SELECT * FROM titles";
     $queryOutput = null;
-    if ($queryOutput = mySqlQuery($query))
-    {
+    if ($queryOutput = mySqlQuery($query)) {
         $output["titles"] = $queryOutput->fetch_all();
         error_log(json_encode($output["titles"]));
-    }
-    else
+    } else
         error_log("Something went wrong with the query!");
 }
 
@@ -40,19 +49,15 @@ function DeleteTitle()
 
     if (!isset($clean["titleID"]))
         $output["status"] = "No title ID was supplied!";
-    else
-    {      
+    else {
         $query = "DELETE FROM titles WHERE title_id = '" . $clean['titleID'] . "'";
         error_log($query);
 
         $result = -1;
-        if (($result = mySqlNonQuery( $query )) >= 0)
-        {
-            error_log("$result records were successfully deleted");  
+        if (($result = mySqlNonQuery($query)) >= 0) {
+            error_log("$result records were successfully deleted");
             $output["status"] = "$result records were successfully deleted";
-        }
-        else
-        {
+        } else {
             error_log("There was a problem with the query!");
             $output["status"] = "There was a problem with the query!";
         }

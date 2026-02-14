@@ -112,6 +112,18 @@ function EditBookbyTitleID($titleID)
     $title = $clean["title"];
     $price = $clean["price"];
     $type = $clean["type"];
+    if (!is_numeric($price)) {
+        $output["status"] = "The price should be a number.";
+        return;
+    }
+    if (trim($price) == "") {
+        $output["status"] = "The price shoul not be empty";
+        return;
+    }
+    if ($price < 0) {
+        $output["status"] = "Please enter a positive number for price.";
+        return;
+    }
     $query = "UPDATE titles
               SET title = '$title',
                   type ='$type',
@@ -130,6 +142,8 @@ function EditBookbyTitleID($titleID)
     }
     error_log("EDIT CALLED");
     error_log(json_encode($clean));
+
+
 }
 
 /**
