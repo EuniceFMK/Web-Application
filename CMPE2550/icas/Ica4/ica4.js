@@ -282,7 +282,25 @@ $(document).on("click", ".update", function () {
             function (response) {
                 if (response) {
                     $("#mess").text(response.status);
-                    getBooks(currentauth);
+                    if (!response.valid) {
+                        let btn = $(this);
+                        let row = btn.closest("tr");
+
+                        let actionCell = row.find(".action-cell");
+                        let titleCell = row.find(".title-cell");
+                        let priceCell = row.find(".price-cell");
+                        let typeCell = row.find(".type-cell");
+
+                        // Restore old values
+                        actionCell.html(actionCell.data("oldContent"));
+                        titleCell.text(titleCell.data("oldContent"));
+                        priceCell.text(priceCell.data("oldContent"));
+                        typeCell.html(typeCell.data("oldContent"));
+                        console.log(priceCell.data("oldContent"));
+                        console.log(typeCell.data("oldContent"));
+                    }
+                    else
+                        getBooks(currentauth);
                 }
             },
             ajaxError

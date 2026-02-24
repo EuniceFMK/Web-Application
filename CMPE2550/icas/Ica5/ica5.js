@@ -333,8 +333,9 @@ $(document).on("click", "#addBookBtn", function () {
         },
         "json",
         function (response) {
-            alert(response.status);
+            
             getBooks(currentauth);
+            $("#outputresform").html(response.status);
         },
         ajaxError
     );

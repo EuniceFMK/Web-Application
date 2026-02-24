@@ -19,7 +19,7 @@ function CleanCollection($input)
 $output = array();
 
 $clean = CleanCollection($_GET);
-
+$cleanpost = CleanCollection($_POST);
 if (isset($clean["action"])) {
     if ($clean["action"] == "GetAllTitles")
         GetAllTitles();

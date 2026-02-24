@@ -114,14 +114,17 @@ function EditBookbyTitleID($titleID)
     $type = $clean["type"];
     if (!is_numeric($price)) {
         $output["status"] = "The price should be a number.";
+        $output["valid"] = false;
         return;
     }
     if (trim($price) == "") {
         $output["status"] = "The price shoul not be empty";
+        $output["valid"] = false;
         return;
     }
     if ($price < 0) {
         $output["status"] = "Please enter a positive number for price.";
+        $output["valid"] = false;
         return;
     }
     $query = "UPDATE titles
@@ -136,6 +139,7 @@ function EditBookbyTitleID($titleID)
     if (($result = mySqlNonQuery($query)) >= 0) {
         error_log("$result records were successfully updated");
         $output["status"] = "$result records were successfully updated";
+        $output["valid"] = true;
     } else {
         error_log("There was a problem with the query!");
         $output["status"] = "There was a problem with the query!";

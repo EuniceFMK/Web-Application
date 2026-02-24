@@ -11,14 +11,23 @@ $output = array();
 $clean = array();
 
 // Sanitize and clean input parameters
-foreach ($_GET as $key => $value) {
-    if (is_array($value)) {
-        $clean[$key] = $value;   // NE PAS nettoyer un array ici
-    } else {
-    $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))] =
-        trim($connection->real_escape_string(strip_tags(htmlspecialchars($value))));
-    }
+function CleanCollection($input)
+{
+    global $connection;
+    $clean = array();
+    foreach ($input as $key => $value)
+        if (is_array($value)) {
+            $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))] = CleanCollection($value);
+        } else {
+            $clean[trim($connection->real_escape_string(strip_tags(htmlspecialchars($key))))]
+                = trim($connection->real_escape_string(strip_tags(htmlspecialchars($value))));
+        }
+
+    return $clean;
 }
+
+$clean = CleanCollection($_GET);
+error_log(json_encode($clean));
 
 $titleId = $clean["TitleID"] ?? "";
 $titleInput = $clean["title"] ?? "";
