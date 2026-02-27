@@ -112,7 +112,7 @@ function success(response) {
 
             let cell = $("#" + r + "_" + c);
 
-            if (cell.val() === "") {
+            if (cell.val() == "") {
                 cell.addClass("shadow");
             }
         });
@@ -183,7 +183,7 @@ function updateBoard(response) {
 
     // Update the board based on the response
     if (response.board) {
-        document.querySelectorAll(".cell").forEach(cell => {
+        document.querySelectorAll("#board input").forEach(cell => {
             cell.classList.remove("shadow");
         });
         // Iterate through the board and update each cell
@@ -214,7 +214,7 @@ function updateBoard(response) {
 
             let cell = $("#" + r + "_" + c);
 
-            if (cell.val() === "") {
+            if (cell.val() == "") {
                 cell.addClass("shadow");
             }
         });
@@ -226,8 +226,6 @@ if (response.gameOver == true) {
 }
 console.log("Valid moves:", response.validMoves);
 }
-
-
 
 function QuitGame() {
     CallAjax(

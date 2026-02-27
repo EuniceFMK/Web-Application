@@ -115,7 +115,6 @@ function playMove()
     }
     $mark = $_SESSION["mark"];                          // Get the current player's mark ('X' or 'O')
 
-
     $flips = getFlips($_SESSION["board"], $row, $col, $mark);  // Get the list of pieces to flip
     if (count($flips) == 0) {
         $output["status"] = "Invalid move ";  // Set error message
@@ -138,11 +137,24 @@ function playMove()
             $output["gameOver"] = true;    // Indicate game over in output
             $output["status"] = "Game Over! No valid moves left.";  // Set game over message
             $output["board"] = $_SESSION["board"];
+            list($oCount, $xCount) = countPieces($_SESSION["board"]);
+
+            //Display the score if gameover
+            if ($oCount > $xCount) {
+                $winner = $_SESSION["player2"]; 
+            } elseif ($xCount > $oCount) {
+                $winner = $_SESSION["player1"]; 
+            } else {
+                $winner = "It's a tie!";
+            }
+
+            $output["status"] = "Game Over! Winner: " . $winner ." ".
+                " (X: $xCount, O: $oCount)";
 
         } else {
             $output["status"] = $_SESSION["currentPlayer"] . " plays again (opponent has no valid move)";  // Update status message
             $output["board"] = $_SESSION["board"];
-           
+
         }
         $output["validMoves"] = $currentValidMoves;
         return;
@@ -293,4 +305,20 @@ function ValidMove($board, $player)
         }
     }
     return $valids;
+}
+
+function countPieces($board)
+{
+    $count1 = 0; // O
+    $count2 = 0; // X
+
+    for ($r = 0; $r < 8; $r++) {
+        for ($c = 0; $c < 8; $c++) {
+            if ($board[$r][$c] == 1)
+                $count1++;
+            if ($board[$r][$c] == 2)
+                $count2++;
+        }
+    }
+    return [$count1, $count2];
 }

@@ -248,6 +248,7 @@ function EditCallBack(response, btn) {
     actionCell.data("oldContent", actionCell.html());
     titleCell.data("oldContent", titleCell.text());
     priceCell.data("oldContent", priceCell.text());
+     typeCell.data("oldContent", typeCell.html());
     actionCell.html(`
         <button class="update">Update</button>
         <button class="cancel">Cancel</button>
@@ -275,10 +276,7 @@ $(document).on("click", ".update", function () {
     let newtype = row.find("select").val();
     let newtitle = row.find(".titleinput").val();
     let newprice = row.find(".priceinput").val();
-    if (isNaN(newprice) || newprice.trim() === "") {
-        alert("Please enter a valid number for price.");
-        return;
-    } else {
+    {
         CallAjax("service.php",
             "GET",
             {
@@ -291,7 +289,26 @@ $(document).on("click", ".update", function () {
             "json",
             function (response) {
                 if (response) {
-                    getBooks(currentauth);
+                    $("#mess").text(response.status);
+                    if (!response.valid) {
+                        let btn = $(this);
+                        let row = btn.closest("tr");
+
+                        let actionCell = row.find(".action-cell");
+                        let titleCell = row.find(".title-cell");
+                        let priceCell = row.find(".price-cell");
+                        let typeCell = row.find(".type-cell");
+
+                        // Restore old values
+                        actionCell.html(actionCell.data("oldContent"));
+                        titleCell.text(titleCell.data("oldContent"));
+                        priceCell.text(priceCell.data("oldContent"));
+                        typeCell.html(typeCell.data("oldContent"));
+                        console.log(priceCell.data("oldContent"));
+                        console.log(typeCell.data("oldContent"));
+                    }
+                    else
+                        getBooks(currentauth);
                 }
             },
             ajaxError
@@ -311,10 +328,14 @@ $(document).on("click", ".cancel", function () {
     actionCell.html(actionCell.data("oldContent"));
     titleCell.text(titleCell.data("oldContent"));
     priceCell.text(priceCell.data("oldContent"));
-    typeCell.text(typeCell.data("oldContent"));
+    typeCell.html(typeCell.data("oldContent"));
+    console.log(priceCell.data("oldContent"));
+    console.log(typeCell.data("oldContent"));
 });
 
+
 $(document).on("click", "#addBookBtn", function () {
+     $("#outputresform").empty();
     let titleID = $("#titleIDInput").val();
     let title = $("#titleInput").val();
     let type = $("#typeSelect").val();
