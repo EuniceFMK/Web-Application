@@ -81,7 +81,7 @@ input[type="button"]:hover {
 
 /* Board container */
 #board {
-    display: none;              /* caché au départ */
+ 
     margin-top: 25px;
     display: grid;
     grid-template-columns: repeat(8, 55px);
@@ -91,7 +91,7 @@ input[type="button"]:hover {
 }
 
 /* Cells */
-#board input {
+#board input{
     width: 55px;
     height: 55px;
     border: 1px solid #ffb3d9;  /* fines lignes entre cases */
@@ -125,4 +125,8 @@ input[type="button"]:hover {
 
 .oCell {
     color: #9d4edd;
+}
+#board input.shadow{
+    background-color: lightgray;
+    cursor: pointer;
 }

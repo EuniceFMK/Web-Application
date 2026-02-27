@@ -12,13 +12,7 @@ $(document).ready(function () {
     CallAjax("gameflow.php", "GET", { action: "InitGame" }, "json", initSuccess, err);  // Initialize the game on page load
     $("#nw").click(newGame);    // Start a new game when "New Game" button is clicked
 
-    $("#qg").click(function () {
-        gameOver = false;  // Reset game over flag
-        $("#p1").val("");  // Clear player 1 name input
-        $("#p2").val("");   // Clear player 2 name input
-        $("#names").html("Enter your names below");    //Prompt for player names
-        $("#board").hide();                    // Hide the game board
-    })
+    $("#qg").click(QuitGame);
 
     $("#board input").click(function () {
         if (gameOver) {
@@ -78,7 +72,7 @@ function newGame() {
         "json",
         success,
         err);
-   // $("#board").show();
+    // $("#board").show();
 }
 /**
  * FunctionName:    nullGame
@@ -95,14 +89,33 @@ function success(response) {
                 let cell = $("#" + r + "_" + c);
                 cell.removeClass("xCell oCell");  // Clear existing classes
                 cell.val(response.board[r][c]);  // Set cell value
-                if (response.board[r][c] == "X") {
+                if (response.board[r][c] == 2) {
+                    cell.val("X");
                     cell.addClass("xCell");    // Add class for X
                 }
-                else if (response.board[r][c] == "O") {
+                else if (response.board[r][c] == 1) {
+                    cell.val("O");
                     cell.addClass("oCell");   // Add class for O
+                }
+                else {
+                    cell.val("");
                 }
             }
         }
+    }
+     if (response.validMoves) {
+
+        response.validMoves.forEach(function (move) {
+
+            let r = move[0];
+            let c = move[1];
+
+            let cell = $("#" + r + "_" + c);
+
+            if (cell.val() === "") {
+                cell.addClass("shadow");
+            }
+        });
     }
     //$("#table td").text("");
     $("#names").html(response.status);
@@ -170,28 +183,65 @@ function updateBoard(response) {
 
     // Update the board based on the response
     if (response.board) {
+        document.querySelectorAll(".cell").forEach(cell => {
+            cell.classList.remove("shadow");
+        });
         // Iterate through the board and update each cell
         for (let r = 0; r < 8; r++) {
             for (let c = 0; c < 8; c++) {
                 let cell = $("#" + r + "_" + c);   // Select the cell by its ID
                 cell.removeClass("xCell oCell");   // Remove existing classes
-                cell.val(response.board[r][c]);   // Set the cell value
-                if (response.board[r][c] == "X") {
+                if (response.board[r][c] == 2) {
+                    cell.val("X");
                     cell.addClass("xCell");   // Add class for X
                 }
-                else if (response.board[r][c] == "O") {
+                else if (response.board[r][c] == 1) {
+                    cell.val("O");
                     cell.addClass("oCell");   // Add class for O
+                }
+                else {
+                    cell.val("");
                 }
             }
         }
     }
+    if (response.validMoves) {
 
-    if(response.)
+        response.validMoves.forEach(function (move) {
 
+            let r = move[0];
+            let c = move[1];
 
-    // Check if the game is over
-    if (response.gameOver == true) {
-        gameOver = true;  //    Set game over flag
-        $("#board").addClass("disabled");  // Disable the game board
+            let cell = $("#" + r + "_" + c);
+
+            if (cell.val() === "") {
+                cell.addClass("shadow");
+            }
+        });
     }
+    // Check if the game is over
+if (response.gameOver == true) {
+    gameOver = true;  //    Set game over flag
+    $("#board").addClass("disabled");  // Disable the game board
+}
+console.log("Valid moves:", response.validMoves);
+}
+
+
+
+function QuitGame() {
+    CallAjax(
+        "gameflow.php",
+        "GET",
+        { action: "QuitGame" },
+        "json",
+        function (response) {
+            gameOver = false;  // Reset game over flag
+            $("#p1").val("");  // Clear player 1 name input
+            $("#p2").val("");   // Clear player 2 name input
+            $("#names").html("Enter your names below");    //Prompt for player names
+            $("#board").hide();                    // Hide the game board
+        },
+        err
+    )
 }

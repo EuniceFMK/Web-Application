@@ -76,11 +76,12 @@ function playMove()
 
     $row = intval($clean["row"] ?? -1);         // Get and sanitize row input
     $col = intval($clean["col"] ?? -1);        // Get and sanitize column input
-
+    $currentValidMoves = ValidMove($_SESSION["board"], $_SESSION["mark"]);
     // Validate row and column inputs
     if ($row < 0 || $row > 7 || $col < 0 || $col > 7) {
         $output["status"] = "Invalid move";        // Set error message
         $output["board"] = $_SESSION["board"];    // Return the current board
+        $output["validMoves"] = $currentValidMoves;
         return;
     }
 
@@ -106,9 +107,10 @@ function playMove()
     }
 
     // Check if the selected cell is already taken
-    if ($_SESSION["board"][$row][$col] != "") {
+    if ($_SESSION["board"][$row][$col] != 0) {
         $output["status"] = "Cell already taken";     // Set error message
         $output["board"] = $_SESSION["board"];       // Return the current board
+        $output["validMoves"] = $currentValidMoves;
         return;
     }
     $mark = $_SESSION["mark"];                          // Get the current player's mark ('X' or 'O')
@@ -119,6 +121,7 @@ function playMove()
         $output["status"] = "Invalid move ";  // Set error message
         $output["board"] = $_SESSION["board"];    // Return the current board
         $output["status"] .= $_SESSION["currentPlayer"] . "'s turn";  // Update status message
+        $output["validMoves"] = $currentValidMoves;
         return;
     }
     $_SESSION["board"][$row][$col] = $mark;            // Place the mark on the board
@@ -127,6 +130,7 @@ function playMove()
     }
 
     switchPlayer();
+    $validMoves = ValidMove($_SESSION["board"], $_SESSION["mark"]);
     if (!hasValidMove($_SESSION["board"], $_SESSION["mark"])) {
         switchPlayer();
         if (!hasValidMove($_SESSION["board"], $_SESSION["mark"])) {
@@ -138,11 +142,12 @@ function playMove()
         } else {
             $output["status"] = $_SESSION["currentPlayer"] . " plays again (opponent has no valid move)";  // Update status message
             $output["board"] = $_SESSION["board"];
-
+           
         }
+        $output["validMoves"] = $currentValidMoves;
         return;
-
     }
+    $output["validMoves"] = $validMoves;
     $output["board"] = $_SESSION["board"];   // Return the updated board
     $output["status"] = $_SESSION["currentPlayer"] . "'s turn";  // Update status message
 
@@ -151,14 +156,14 @@ function InitGame()
 {
     global $output;  // Access the global output array
     $_SESSION["board"] = [
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""]
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
     ];  // 8x8 empty board
     $_SESSION["currentPlayer"] = ""; // Reset current player
     unset($_SESSION["mark"]);  // Clear the mark from session
@@ -169,14 +174,14 @@ function newGame()
 {
     global $output, $p1, $p2;  // Access global variables for output and player names
     $_SESSION["board"] = [
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", ""]
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
     ];  // 8x8 empty board
 
 
@@ -204,33 +209,35 @@ function newGame()
         $output["status"] = "Game started successfully";   // Set success message
         // Randomly select the first player
         // positions initiales Othello
-        $_SESSION["board"][3][3] = "O";
-        $_SESSION["board"][3][4] = "X";
-        $_SESSION["board"][4][3] = "X";
-        $_SESSION["board"][4][4] = "O";
+        $_SESSION["board"][3][3] = 1;
+        $_SESSION["board"][3][4] = 2;
+        $_SESSION["board"][4][3] = 2;
+        $_SESSION["board"][4][4] = 1;
 
         $_SESSION["player1"] = $p1;   // Store player 1 name in session
         $_SESSION["player2"] = $p2;  // Store player 2 name in session
         $_SESSION["currentPlayer"] = $p1;   // Store current player in session
         if (rand(0, 1) == 0) {
             $_SESSION["currentPlayer"] = $p1;
-            $_SESSION["mark"] = "X";
+            $_SESSION["mark"] = 2;
         } else {
             $_SESSION["currentPlayer"] = $p2;
-            $_SESSION["mark"] = "O";
+            $_SESSION["mark"] = 1;
         }
+        $validMoves = ValidMove($_SESSION["board"], $_SESSION["mark"]);
         $output["status"] = $_SESSION["currentPlayer"] . " goes first (" . $_SESSION["mark"] . ")";   // Update status message
         $output["success"] = true;    // Indicate success
         $output["board"] = $_SESSION["board"];    // Return the initialized board
+        $output["validMoves"] = ValidMove($_SESSION["board"], $_SESSION["mark"]);
     }
 }
 
 function getFlips($board, $row, $col, $player)
 {
     global $output, $DIRECTIONS;
-    if ($board[$row][$col] != "")
+    if ($board[$row][$col] != 0)
         return [];
-    $opponent = ($player == "X") ? "O" : "X";
+    $opponent = ($player == 2) ? 1 : 2;
     $flip = [];
 
     foreach ($DIRECTIONS as [$dr, $dc]) {
@@ -251,10 +258,6 @@ function getFlips($board, $row, $col, $player)
         }
 
     }
-    foreach ($flip as [$dr, $dc]) {
-        $_SESSION["Move"] = [$dr, $dc];
-         $output["Move"] = [$dr, $dc];
-    }
     return $flip;
 }
 function hasValidMove($board, $player)
@@ -271,9 +274,23 @@ function hasValidMove($board, $player)
 
 function switchPlayer()
 {
-    $_SESSION["mark"] = ($_SESSION["mark"] == "X") ? "O" : "X";
+    $_SESSION["mark"] = ($_SESSION["mark"] == 2) ? 1 : 2;
     $_SESSION["currentPlayer"] =
         ($_SESSION["currentPlayer"] == $_SESSION["player1"])
         ? $_SESSION["player2"]
         : $_SESSION["player1"];
+}
+
+function ValidMove($board, $player)
+{
+
+    $valids = [];
+    for ($r = 0; $r < 8; $r++) {
+        for ($c = 0; $c < 8; $c++) {
+            if (count(getFlips($board, $r, $c, $player)) > 0) {
+                $valids[] = [$r, $c];
+            }
+        }
+    }
+    return $valids;
 }
