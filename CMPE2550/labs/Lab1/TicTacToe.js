@@ -82,6 +82,11 @@ function newGame() {
  */
 function success(response) {
 
+     if (response.board) {
+        document.querySelectorAll("#board input").forEach(cell => {
+            cell.classList.remove("shadow");
+        });
+    }
     console.log(response);
     if (response.board) {
         for (let r = 0; r < 8; r++) {
