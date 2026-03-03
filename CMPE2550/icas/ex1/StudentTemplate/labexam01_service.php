@@ -18,9 +18,10 @@ foreach ($_GET as $key => $value)
     $clean[trim(strip_tags(htmlspecialchars($key)))] = strip_tags(htmlspecialchars($value));
 
 $output = array();   // Initialize an array to hold output data
-
+session_start();
 error_log($clean["seed"]);
 $action = $clean["action"] ?? "";  // Get the action to be performed
+$seednum = $clean["seed"] ?? "";  // Get the seed number for generating random values
 $arr = array();
 // This function will generate the array by calling the PartB function in
 // the labexam01_lib.php file, and process it as requested.  The output will
@@ -32,24 +33,23 @@ switch ($action) {
     case "getsaved":
         GetSaved();
         break;
-    case "clearserved":
+    case "clearsaved":
         ClearSaved();
+        break;
+    case "submitnew":
+        SubmitNew();
         break;
 }
 function SubmitNew()
 {
-    global $output, $seednum,$arr;
-
-    $arr = PartB($seednum);
-
+    global $output, $seednum;
 
     if (!is_numeric($seednum)) {
         $output["message"] = "Seed must be numeric";
-
     } else {
+        $arr = PartB($seednum);
         $output["response"] = $arr;
         $_SESSION["Returnedarray"] = $arr;
-        error_log($arr);
     }
 }
 
@@ -62,7 +62,12 @@ die();
 // message is returned if the array does not exist in the session.
 function GetSaved()
 {
-
+    global $output;
+    if (isset($_SESSION["Returnedarray"])) {
+        $output["response"] = $_SESSION["Returnedarray"];
+    } else {
+        $output["message"] = "No saved array found";
+    }
 }
 
 

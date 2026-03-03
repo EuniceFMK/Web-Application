@@ -16,7 +16,7 @@ $name = "Eunice De Grace ";
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Lab Exam 01</title>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="labexam01.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Roboto' rel='stylesheet' type='text/css'>
 	<style type="text/css">

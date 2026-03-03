@@ -140,3 +140,24 @@ function loadBooks(response) {
     
     book.append(num);
 }
+
+//let books = $("#main table tbody").first();
+//function displayOutput(arr) {
+
+//     $("#outputPartB").empty();
+
+//     let selected = $("input[name='rbListType']:checked").val();
+
+//     if (selected === "rbSum") {
+
+//         let sum = 0;
+//         arr.forEach(num => sum += parseInt(num));
+
+//         $("#outputPartB").text("Sum = " + sum);
+//     }
+//     else {
+//         arr.forEach(num => {
+//             $("#outputPartB").append(num + "<br>");
+//         });
+//     }
+// }

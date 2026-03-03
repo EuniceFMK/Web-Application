@@ -19,54 +19,70 @@ function Bad(d, s) {
 }
 
 
+
 // Add your code below this line to set up button listeners, AJAX request methods,
 // success functions.
 
 $(document).ready(function () {
-
-
+    console.log("JS FILE LOADED");
+    $("#clearSaved").click(clearsaved);    // Start a new game when "New Game" button is clicked
     $("#getSaved").click(getsaved);    // Start a new game when "New Game" button is clicked
-
+    $("#submitNew").click(submitnew);    // Start a new game when "New Game" button is clicked
 })
 
+function submitnew() {
+     console.log("Submit clicked"); 
+    AJAX(
+        "GET",
+        "labexam01_service.php",
+        "json",
+        {
+            action: "submitnew",
+            seed: $("#seedNum").val()
+        },
+        function (response) {
+            console.log(response);
+        },
+        Bad);
+}
 function getsaved() {
     AJAX(
         "GET",
-        "labexam01_service.php",       
+        "labexam01_service.php",
         "json",
         {
             action: "getsaved",
             seed: $("#seedNum").val()
         },
-        
         function (response) {
-            console.log(response);
-            console.log(response.response);
-            response.response.forEach(element => {
-                $("#outputPartB").append(element);
-                $("#outputPartB").append(",");
-            });
+            $("#outputPartB").empty();
+            if (response.response) {
+                response.response.forEach(element => {
+                    $("#outputPartB").append(element + ", ");
+                });
+            }
+            else if (response.message) {
+                $("#outputPartB").text(response.message);
+            }
         },
         Bad);
 
 }
 
-function getsaved() {
+function clearsaved() {
     AJAX(
         "GET",
-        "labexam01_service.php",       
+        "labexam01_service.php",
         "json",
         {
             action: "clearsaved",
-          
         },
-        
+
         function (response) {
             console.log(response);
             console.log(response.response);
-            
+
         },
         Bad);
-
 }
 
