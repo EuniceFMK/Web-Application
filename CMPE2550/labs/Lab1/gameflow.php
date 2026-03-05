@@ -299,11 +299,16 @@ function getFlips($board, $row, $col, $player, $dr = null, $dc = null, $saved = 
     
     if ($board[$row][$col] == 0)
         return [];
-    if ($board[$row][$col] == $opponent)
+    if ($board[$row][$col] == $opponent) {
+
+        $saved[] = [$row,$col];
+
+        return getFlips($board,$row + $dr,$col + $dc, $player,    $dr,      $dc,  $saved);
+    }
+    if ($board[$row][$col] == $player)
         return $saved;
 
-    $saved[] = [$row, $col];
-    return getFlips($board, $row + $dr, $col + $dc, $player, $dr, $dc, $saved);
+    return [];
 }
 
 /**
