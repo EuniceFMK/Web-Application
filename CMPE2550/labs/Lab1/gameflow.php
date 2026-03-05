@@ -68,7 +68,6 @@ die();
  * Outputs:         Boolean - true if the board is full (draw), false otherwise
  * Decription:      Checks if the board is full (draw).
  */
-
 function playMove()
 {
     //error_log("In playMove()");
@@ -195,6 +194,12 @@ function InitGame()
     $output["status"] = "Game Initialized";               // Set status message
 }
 
+/**
+ * FunctionName:    newGame
+ * Inputs:          None
+ * Outputs:         Boolean - true if the board is full (draw), false otherwise
+ * Decription:      Checks if the board is full (draw).
+ */
 function newGame()
 {
     global $output, $p1, $p2;                       // Access global variables for output and player names
@@ -262,11 +267,23 @@ function newGame()
     }
 }
 
-function getFlips($board, $row, $col, $player, $dr = null, $dc = null, $collected = [])
+/**
+ * FunctionName:    getFlips
+ * Inputs:          $board - 2D array representing the tic-tac-toe board
+ *                  $row - Row index of the move
+ *                  $col - Column index of the move
+ *                  $player - Current player's mark (1 or 2)
+ *                  $dr - Row direction for checking flips (optional)
+ *                  $dc - Column direction for checking flips (optional)
+ *                  $saved - Array to accumulate pieces to flip (optional)
+ * Outputs:         Array of positions to flip if the move is valid, empty array otherwise
+ * Decription:      Recursively checks in all directions for valid flips based on Othello rules.
+ */
+function getFlips($board, $row, $col, $player, $dr = null, $dc = null, $saved = [])
 {
     global $DIRECTIONS;
-
-    if ($dr === null && $dc === null) {
+    $opponent = ($player == 1) ? 2 : 1;
+    if ($dr == null && $dc == null) {
         if ($board[$row][$col] != 0)
             return [];
         $allFlips = [];
@@ -278,17 +295,24 @@ function getFlips($board, $row, $col, $player, $dr = null, $dc = null, $collecte
     }
 
     if ($row < 0 || $row > 7 || $col < 0 || $col > 7)
-        return [];
-    $opponent = ($player == 2) ? 1 : 2;
-
+        return [];   
+    
     if ($board[$row][$col] == 0)
         return [];
-    if ($board[$row][$col] == $player)
-        return $collected;
+    if ($board[$row][$col] == $opponent)
+        return $saved;
 
-    $collected[] = [$row, $col];
-    return getFlips($board, $row + $dr, $col + $dc, $player, $dr, $dc, $collected);
+    $saved[] = [$row, $col];
+    return getFlips($board, $row + $dr, $col + $dc, $player, $dr, $dc, $saved);
 }
+
+/**
+ * FunctionName:    hasValidMove
+ * Inputs:          $board - 2D array representing the tic-tac-toe board
+ *                  $player - Current player's mark (1 or 2)
+ * Outputs:         Boolean - true if the player has at least one valid move, false otherwise
+ * Decription:      Checks if the current player has any valid moves available on the board.
+ */
 function hasValidMove($board, $player)
 {
     for ($r = 0; $r < 8; $r++) {
@@ -301,6 +325,12 @@ function hasValidMove($board, $player)
     return false;
 }
 
+/**
+ * FunctionName:    switchPlayer
+ * Inputs:          None
+ * Outputs:         None
+ * Decription:      Switches the current player and their corresponding mark (1 or 2) in the session.
+ */
 function switchPlayer()
 {
     $_SESSION["mark"] = ($_SESSION["mark"] == 2) ? 1 : 2;
@@ -310,6 +340,13 @@ function switchPlayer()
         : $_SESSION["player1"];
 }
 
+/**
+ * FunctionName:    ValidMove
+ * Inputs:          $board - 2D array representing the tic-tac-toe board
+ *                  $player - Current player's mark (1 or 2)
+ * Outputs:         Array of valid move positions for the current player
+ * Decription:      Iterates through the board to find all valid moves for the current player based on Othello rules.
+ */
 function ValidMove($board, $player)
 {
     $valids = [];
@@ -322,6 +359,13 @@ function ValidMove($board, $player)
     }
     return $valids;
 }
+
+/**
+ * FunctionName:    countPieces
+ * Inputs:          $board - 2D array representing the tic-tac-toe board
+ * Outputs:         Array containing the count of pieces for player 1 and player 2
+ * Decription:      Counts the number of pieces on the board for each player to determine the score.
+ */
 function countPieces($board)
 {
     $count1 = 0;
