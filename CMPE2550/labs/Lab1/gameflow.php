@@ -129,9 +129,12 @@ function playMove()
 
     switchPlayer();
     $validMoves = ValidMove($_SESSION["board"], $_SESSION["mark"]);
+    $output["validMoves"] = $validMoves;
 
     if (!hasValidMove($_SESSION["board"], $_SESSION["mark"])) {
         switchPlayer();
+        $validMoves = ValidMove($_SESSION["board"], $_SESSION["mark"]);
+        $output["validMoves"] = $validMoves;
         if (!hasValidMove($_SESSION["board"], $_SESSION["mark"])) {
             $_SESSION["gameOver"] = true;  // Set game over status
             $output["gameOver"] = true;    // Indicate game over in output
@@ -259,32 +262,32 @@ function newGame()
     }
 }
 
-function getFlips($board, $row, $col, $player)
+function getFlips($board, $row, $col, $player, $dr = null, $dc = null, $collected = [])
 {
-    global $output, $DIRECTIONS;
-    if ($board[$row][$col] != 0)
+    global $DIRECTIONS;
+
+    if ($dr === null && $dc === null) {
+        if ($board[$row][$col] != 0)
+            return [];
+        $allFlips = [];
+        foreach ($DIRECTIONS as [$dRow, $dCol]) {
+            $flips = getFlips($board, $row + $dRow, $col + $dCol, $player, $dRow, $dCol, []);
+            $allFlips = array_merge($allFlips, $flips);
+        }
+        return $allFlips;
+    }
+
+    if ($row < 0 || $row > 7 || $col < 0 || $col > 7)
         return [];
     $opponent = ($player == 2) ? 1 : 2;
-    $flip = [];
 
-    foreach ($DIRECTIONS as [$dr, $dc]) {
-        $r = $row + $dr;
-        $c = $col + $dc;
-        $temp = [];
+    if ($board[$row][$col] == 0)
+        return [];
+    if ($board[$row][$col] == $player)
+        return $collected;
 
-        while ($r >= 0 && $r < 8 && $c >= 0 && $c < 8 && $board[$r][$c] == $opponent) {
-            $temp[] = [$r, $c];
-            $r += $dr;
-            $c += $dc;
-        }
-        if (
-            $r >= 0 && $r < 8 && $c >= 0 && $c < 8 &&
-            $board[$r][$c] == $player && count($temp) > 0
-        ) {
-            $flip = array_merge($flip, $temp);
-        }
-    }
-    return $flip;
+    $collected[] = [$row, $col];
+    return getFlips($board, $row + $dr, $col + $dc, $player, $dr, $dc, $collected);
 }
 function hasValidMove($board, $player)
 {
@@ -309,7 +312,6 @@ function switchPlayer()
 
 function ValidMove($board, $player)
 {
-
     $valids = [];
     for ($r = 0; $r < 8; $r++) {
         for ($c = 0; $c < 8; $c++) {
@@ -320,7 +322,6 @@ function ValidMove($board, $player)
     }
     return $valids;
 }
-
 function countPieces($board)
 {
     $count1 = 0;
