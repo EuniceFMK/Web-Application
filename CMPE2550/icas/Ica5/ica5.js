@@ -240,6 +240,7 @@ $(document).on("click", ".edit", function () {
 });
 
 function EditCallBack(response, btn) {
+     console.log("edit callback");
     let row = btn.closest("tr");
     let typeCell = row.find(".type-cell");
     let actionCell = row.find(".action-cell");
@@ -248,7 +249,11 @@ function EditCallBack(response, btn) {
     actionCell.data("oldContent", actionCell.html());
     titleCell.data("oldContent", titleCell.text());
     priceCell.data("oldContent", priceCell.text());
-     typeCell.data("oldContent", typeCell.html());
+    typeCell.data("oldContent", typeCell.text()); 
+
+    console.log(`oldcontent: ${typeCell.data("oldContent")}`);
+
+    console.log(typeCell.data("oldContent"));
     actionCell.html(`
         <button class="update">Update</button>
         <button class="cancel">Cancel</button>
@@ -257,6 +262,7 @@ function EditCallBack(response, btn) {
     priceCell.html(`<input type='text' class='priceinput' value='${priceCell.data("oldContent")}'>`);
     let dropList = $("<select>");
     response.types.forEach(type => {
+        console.log(type[0]);
         let opt = $("<option>").val(type[0]).text(type[0]);
         if (type[0] == typeCell.data("oldContent")) {
             typeCell.data("oldContent", type[0]);
@@ -287,30 +293,7 @@ $(document).on("click", ".update", function () {
                 titleID: row.data("titleid")
             },
             "json",
-            function (response) {
-                if (response) {
-                    $("#mess").text(response.status);
-                    if (!response.valid) {
-                        let btn = $(this);
-                        let row = btn.closest("tr");
-
-                        let actionCell = row.find(".action-cell");
-                        let titleCell = row.find(".title-cell");
-                        let priceCell = row.find(".price-cell");
-                        let typeCell = row.find(".type-cell");
-
-                        // Restore old values
-                        actionCell.html(actionCell.data("oldContent"));
-                        titleCell.text(titleCell.data("oldContent"));
-                        priceCell.text(priceCell.data("oldContent"));
-                        typeCell.html(typeCell.data("oldContent"));
-                        console.log(priceCell.data("oldContent"));
-                        console.log(typeCell.data("oldContent"));
-                    }
-                    else
-                        getBooks(currentauth);
-                }
-            },
+           update,
             ajaxError
         );
     }
@@ -328,14 +311,14 @@ $(document).on("click", ".cancel", function () {
     actionCell.html(actionCell.data("oldContent"));
     titleCell.text(titleCell.data("oldContent"));
     priceCell.text(priceCell.data("oldContent"));
-    typeCell.html(typeCell.data("oldContent"));
+    typeCell.text(typeCell.data("oldContent"));
     console.log(priceCell.data("oldContent"));
     console.log(typeCell.data("oldContent"));
 });
 
 
 $(document).on("click", "#addBookBtn", function () {
-     $("#outputresform").empty();
+    $("#outputresform").empty();
     let titleID = $("#titleIDInput").val();
     let title = $("#titleInput").val();
     let type = $("#typeSelect").val();
@@ -354,10 +337,36 @@ $(document).on("click", "#addBookBtn", function () {
         },
         "json",
         function (response) {
-            
+
             getBooks(currentauth);
             $("#outputresform").html(response.status);
         },
         ajaxError
     );
 });
+
+
+function update(response) {
+    console.log(response)
+    if (response) {
+        $("#mess").text(response.status);
+        if (!response.valid) {
+            let btn = $(this);
+            let row = btn.closest("tr");
+            let actionCell = row.find(".action-cell");
+            let titleCell = row.find(".title-cell");
+            let priceCell = row.find(".price-cell");
+            let typeCell = row.find(".type-cell");
+
+            // Restore old values
+            actionCell.html(actionCell.data("oldContent"));
+            titleCell.text(titleCell.data("oldContent"));
+            priceCell.text(priceCell.data("oldContent"));
+            typeCell.html(typeCell.data("oldContent"));
+            console.log(priceCell.data("oldContent"));
+            console.log(typeCell.data("oldContent"));
+        }
+        else
+            getBooks(currentauth);
+    }
+}

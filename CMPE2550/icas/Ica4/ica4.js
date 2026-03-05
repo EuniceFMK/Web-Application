@@ -279,34 +279,41 @@ $(document).on("click", ".update", function () {
                 titleID: row.data("titleid")
             },
             "json",
-            function (response) {
-                if (response) {
-                    $("#mess").text(response.status);
-                    if (!response.valid) {
-                        let btn = $(this);
-                        let row = btn.closest("tr");
-
-                        let actionCell = row.find(".action-cell");
-                        let titleCell = row.find(".title-cell");
-                        let priceCell = row.find(".price-cell");
-                        let typeCell = row.find(".type-cell");
-
-                        // Restore old values
-                        actionCell.html(actionCell.data("oldContent"));
-                        titleCell.text(titleCell.data("oldContent"));
-                        priceCell.text(priceCell.data("oldContent"));
-                        typeCell.html(typeCell.data("oldContent"));
-                        console.log(priceCell.data("oldContent"));
-                        console.log(typeCell.data("oldContent"));
-                    }
-                    else
-                        getBooks(currentauth);
-                }
-            },
+            update,
             ajaxError
         );
     }
 })
+
+/** * FunctionName:    update
+ * Inputs:          response - Response data from the AJAX request
+ * Outputs:        None
+ * Decription:     Handles the response from the update book AJAX request, updating the book list on success or restoring the original values on failure.
+ */
+function update(response) {
+    if (response) {
+        $("#mess").text(response.status);
+        if (!response.valid) {
+            let btn = $(this);
+            let row = btn.closest("tr");
+
+            let actionCell = row.find(".action-cell");
+            let titleCell = row.find(".title-cell");
+            let priceCell = row.find(".price-cell");
+            let typeCell = row.find(".type-cell");
+
+            // Restore old values
+            actionCell.html(actionCell.data("oldContent"));
+            titleCell.text(titleCell.data("oldContent"));
+            priceCell.text(priceCell.data("oldContent"));
+            typeCell.html(typeCell.data("oldContent"));
+            console.log(priceCell.data("oldContent"));
+            console.log(typeCell.data("oldContent"));
+        }
+        else
+            getBooks(currentauth);
+    }
+}
 
 //Cancel button event handler
 $(document).on("click", ".cancel", function () {

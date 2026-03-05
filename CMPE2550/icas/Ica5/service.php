@@ -165,22 +165,27 @@ function AddBook()
     global $output, $titleId, $titleInput, $typeInput, $priceInput, $authorInput;
     if ($typeInput == "BookGenre") {
         $output["status"] = "Please select a valid book type";
+        $output["valid"] = false;
         return;
     }
     if (!is_array($authorInput) || count($authorInput) == 0) {
         $output["status"] = "Please select at least one author";
+        $output["valid"] = false;
         return;
     }
     if (!is_numeric($priceInput) || $priceInput <= 0) {
         $output["status"] = "Please enter a valid price greater than 0";
+        $output["valid"] = false;
         return;
     }
     if ($titleInput == "") {
         $output["status"] = "Please enter a valid title";
+        $output["valid"] = false;
         return;
     }
     if ($titleId == "") {
         $output["status"] = "Please enter a valid titleId";
+        $output["valid"] = false;
         return;
     }
 
@@ -188,6 +193,7 @@ function AddBook()
         VALUES ('$titleId', '$titleInput', '$typeInput', '$priceInput')";
     if (mySqlNonQuery($queryTitle) < 0) {
         $output["status"] = "Error adding book";
+        $output["valid"] = false;
         return;
     }
     $authorOrder = 1;
@@ -198,8 +204,9 @@ function AddBook()
             VALUES ('$au_id', '$titleId', '$authorOrder', '$royalty')";
         mySqlNonQuery($queryAuthor);
         $authorOrder++;
+        $output["valid"] = true;
     }
-
+   // $output["valid"] = true;
     $output["status"] = "Book successfully added";
 
 }
