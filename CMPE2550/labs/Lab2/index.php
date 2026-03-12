@@ -15,12 +15,12 @@
     <form>
         <div class="input-box">
             <label for="username">Username</label>
-            <input id="username" type="text" required>
+            <input id="username" type="text" name="username" required>
         </div>
 
         <div class="input-box">
             <label for="password">Password</label>
-            <input id="password" type="password" required>
+            <input id="password" type="password" name="password" required>
         </div>
 
         <button class="register">Register 💕</button>
