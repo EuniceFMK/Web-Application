@@ -58,14 +58,17 @@ function getUsersSuccess(response) {
         response.users.forEach(function (user) {
             let $row = $("<tr>");
             let $role=user[3];  
-            let $div = $("<div>");
-            $div.append($("<button type='button'>").text("Update")
-                        .attr("id", "update_" + user[0])
-                        .click(Update));
-            $div.append($("<button type='button'>").text("Delete")
-                        .attr("id", "delete_" + user[0])
-                        .click(Delete));
-            $row.append($("<td>").append($div));
+            // let $div = $("<div>");
+            // $div.append($("<button type='button'>").text("Update")
+            //             .attr("id", "update_" + user[0])
+            //             .click(Update));
+            // $div.append($("<button type='button'>").text("Delete")
+            //             .attr("id", "delete_" + user[0])
+            //             .click(Delete));
+            $row.append($("<td>")
+                        .append($(`<button type="button" id="update_${user[0]}" onclick="Update(this)">`).text("Update"))
+                        .append(($(`<button type='button' id="delete_${user[0]}" onclick="Delete(this)">`).text("Delete")
+                       )));
             $row.append($("<td>").text(user[0]));
             $row.append($("<td>").text(user[1]));
             $row.append($("<td>").text(user[2]));
@@ -124,8 +127,8 @@ function successRegister(response) {
 
 }
 
-function Update() {
-    let userId = $(this).attr("id").split("_")[1];
+function Update(btn) {
+    let userId = $(btn).attr("id").split("_")[1];
     let newRoleId = $("#role_" + userId).val();
 
     CallAjax("service.php",
@@ -144,8 +147,8 @@ function Update() {
         ajaxError);
 }
 
-function Delete() {
-    let userId = $(this).attr("id").split("_")[1];
+function Delete(btn) {
+    let userId = $(btn).attr("id").split("_")[1];
 
     CallAjax("service.php",
         "POST",
@@ -161,3 +164,5 @@ function Delete() {
         },
         ajaxError);
 }
+//  .attr("id", "delete_" + user[0])
+//                         .click(Delete))
