@@ -85,10 +85,10 @@ INSERT INTO Roles (roleName, roleDescription, roleValue)
 VALUES 
 ('Root', 'Full system control', 100),
 ('Admin', 'Administrative access', 50),
-('Default', 'Basic user role', 1);
+('Member', 'Basic user role', 1);
 
 INSERT INTO Users (userName, uPassword)
-VALUES ('root', 'rootpassword');
+VALUES ('root', '$2y$10$8LKA5sLgYYmdLafQRnKkTOqOTEIRcWzEDGehK3Q7sXmMNWWJdLfTi');
 
 INSERT INTO UsersRoles (userId, roleId)
 VALUES (1, 1);

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $("#message").hide();
     $("#regButton").click(Registration);
+    $("#loginButton").click(Login);
 });
 
 /**
@@ -57,13 +58,46 @@ function Registration() {
             password: $("#password").val()
         },
         "JSON",
-        success,
+        successRegister,
         ajaxError);
 }
 
-function success(response) {
+function successRegister(response) {
     //console.log("Registration successful");
     $("#message").show();
     $("#message").text(response.status);
     console.log(response.status);
+}
+
+function Login() {
+    CallAjax("service.php",
+        "POST",
+        {
+            action: "login",
+            username: $("#username").val(),
+            password: $("#password").val()
+        },
+        "JSON",
+        successLogin,
+        ajaxError);
+}
+
+function successLogin(response) {
+    console.log("Login response:", response);
+    $("#message").hide();
+    if (response.status == "Login successful") {
+
+        if (response.role == "admin") {
+            window.location.href = "admin.php";
+        }
+        else if (response.role == "root") {
+            window.location.href = "root.php";
+        }
+        else if (response.role == "member") {
+            window.location.href = "user.php";
+        }
+    } else {
+        $("#message").show();
+        $("#message").text(response.status);
+    }
 }
