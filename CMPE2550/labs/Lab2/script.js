@@ -88,10 +88,10 @@ function successLogin(response) {
     if (response.status == "Login successful") {
 
         if (response.role == "admin") {
-            window.location.href = "admin.php";
+            window.location.href = "userManagement.php";
         }
         else if (response.role == "root") {
-            window.location.href = "root.php";
+            window.location.href = "userManagement.php";
         }
         else if (response.role == "member") {
             window.location.href = "user.php";

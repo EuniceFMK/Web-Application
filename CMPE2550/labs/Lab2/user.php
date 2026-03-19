@@ -11,7 +11,7 @@
     <form action="">
         <h1>Welcome, User!</h1>
         <p>This is the user dashboard</p>
-        <button type="button" onclick="window.location.href='index.php'">Logout</button>
+        <button type="button" onclick="window.location.href='logout.php'">Logout</button>
     </form>
 </body>
 </html>

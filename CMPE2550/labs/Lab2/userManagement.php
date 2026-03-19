@@ -1,18 +1,26 @@
+<?php
+session_start();
+
+ if(!isset($_SESSION["role"]) || $_SESSION["role"] != "root"){
+    header("Location: index.php");
+    exit();
+ } 
+?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="root.js"></script>
+    <script src="userManagement.js"></script>
     <link rel="stylesheet" href="root.css">
     <title>Document</title>
 </head>
 <body>
     <form action="">
-        <h1>Welcome, Root!</h1>
+        <h1>Welcome, <?php echo $_SESSION["username"]; ?>! to the user management panel</h1>
         <p>This is the root dashboard. You have full access to the system.</p>
-        <button type="button" onclick="window.location.href='index.php'">Logout</button>
+        <button type="button" onclick="window.location.href='logout.php'">Logout</button>
 
         <div class="input-box">
             <label for="username">Username</label>

@@ -87,6 +87,8 @@ function getUsersSuccess(response) {
 
 
 function Registration() {
+    username = $("#username").val();
+    password = $("#password").val();
     if (username.length < 4) {
         alert("Username must be at least 4 characters");
         return;

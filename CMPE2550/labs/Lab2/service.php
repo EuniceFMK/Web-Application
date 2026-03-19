@@ -1,7 +1,7 @@
 <?php
 
 require_once "db.php";
-
+session_start();
 $output = array();
 $clean = array();
 
@@ -38,14 +38,14 @@ if (isset($cleanPost["action"])) {
         Login($cleanPost["username"], $cleanPost["password"]);
     if ($cleanPost["action"] == "registerByRoot")
         RegisterByRoot($cleanPost["username"], $cleanPost["password"], $roleId);
-    if($cleanPost["action"] == "updateRole")
+    if ($cleanPost["action"] == "updateRole")
         UpdateRole($cleanPost["userId"], $cleanPost["roleId"]);
-    if($cleanPost["action"] == "DeleteUser")
+    if ($cleanPost["action"] == "DeleteUser")
         DeleteUser($cleanPost["userId"]);
 }
 
-if(isset($cleanGet["action"])){
-    if($cleanGet["action"] == "getUsers")
+if (isset($cleanGet["action"])) {
+    if ($cleanGet["action"] == "getUsers")
         GetUsers();
 }
 
@@ -120,8 +120,8 @@ function Login($username, $password)
     }
 
     if ($output["valid"]) {
-        //session_start();
 
+        $_SESSION["username"] = $username;
         $query2 = "SELECT roleId 
                   FROM UsersRoles ur 
                   JOIN Users u ON ur.userId = u.userId 
@@ -132,13 +132,13 @@ function Login($username, $password)
             $roles = $results->fetch_assoc();
             $roleId = $roles["roleId"];
             if ($roleId == 3) {
-                //$_SESSION["role"] = "member";
+                $_SESSION["role"] = "member";
                 $output["role"] = "member";
             } elseif ($roleId == 2) {
-                //$_SESSION["role"] = "admin";
+                $_SESSION["role"] = "admin";
                 $output["role"] = "admin";
             } elseif ($roleId == 1) {
-                //$_SESSION["role"] = "root";
+                $_SESSION["role"] = "root";
                 $output["role"] = "root";
             }
             error_log("User role: " . $output["role"]);
@@ -148,24 +148,45 @@ function Login($username, $password)
     }
 }
 
-function GetUsers(){
+function GetUsers()
+{
+
     global $output;
+    // if (!isset($_SESSION["role"]) || $_SESSION["role"] != "root"||$_SESSION["role"] != "admin") {
+    //     $output["status"] = "Access denied";
+    //     $output["valid"] = false;
+    //     return;
+    // }
+
     $query = "SELECT u.userId, u.userName, u.uPassword, r.roleId
               FROM Users u
               JOIN UsersRoles ur ON u.userId = ur.userId
               JOIN Roles r ON ur.roleId = r.roleId";
     $results = mySqlQuery($query);
-    if($results && $results->num_rows > 0){
+    if ($results && $results->num_rows > 0) {
         $output["users"] = $results->fetch_all();
-    }
-    else{
+    } else {
         $output["users"] = [];
     }
 }
 
 function RegisterByRoot($username, $password, $roleId)
 {
+
     global $output;
+    if (!isset($_SESSION["role"]) || ($_SESSION["role"] != "root" && $_SESSION["role"] != "admin")) {
+        $output["status"] = "Access denied";
+        $output["valid"] = false;
+        return;
+    }
+
+    $query = "SELECT r.roleValue
+            FROM Roles r JOIN UsersRoles ur ON ur.roleId = r.roleId
+            JOIN Users u ON u.userId=ur.userId WHERE u.userName='{$_SESSION["username"]}'";
+
+    $results = mySqlQuery($query);
+    $row = $results->fetch_assoc();
+
     if (strlen($username) < 4) {
         $output["status"] = "Username too short";
         $output["valid"] = false;
@@ -207,30 +228,101 @@ function RegisterByRoot($username, $password, $roleId)
     }
 }
 
-function UpdateRole($userId, $roleId){
+function UpdateRole($userId, $roleId)
+{
+
     global $output;
+    if (!isset($_SESSION["role"]) || ($_SESSION["role"] != "root" && $_SESSION["role"] != "admin")) {
+        $output["status"] = "Access denied";
+        $output["valid"] = false;
+        return;
+    }
+    $query = " SELECT r.roleValue
+               FROM UsersRoles ur
+               JOIN Roles r ON ur.roleId = r.roleId
+               JOIN Users u ON ur.userId = u.userId
+               WHERE u.userName = '{$_SESSION["username"]}'
+    ";
+
+    $result = mySqlQuery($query);
+    $row = $result->fetch_assoc();
+    $currentRoleValue = $row["roleValue"];
+
+    $query = "SELECT r.roleValue
+    FROM UsersRoles ur
+    JOIN Roles r ON ur.roleId = r.roleId
+    WHERE ur.userId = '$userId'
+    ";
+    $result = mySqlQuery($query);
+    $row = $result->fetch_assoc();
+    $targetRoleValue = $row["roleValue"];
+
+    if ($currentRoleValue >= $targetRoleValue) {
+        $output["status"] = "You cannot change the role of a user with equal or higher privileges";
+        $output["valid"] = false;
+        return;
+    }
+
+    if ($currentRoleValue <= $roleId) {
+        $output["status"] = "You cannot assign a role equal or higher than your own";
+        $output["valid"] = false;
+        return;
+    }
     $query = "UPDATE UsersRoles 
               SET roleId='$roleId' 
               WHERE userId='$userId'";
-    if(mySqlNonQuery($query) < 0){
+    if (mySqlNonQuery($query) < 0) {
         $output["status"] = "Error updating user role";
         $output["valid"] = false;
-    }
-    else{
+    } else {
         $output["status"] = "User role updated successfully";
         $output["valid"] = true;
     }
 }
 
-function DeleteUser($userId){
+function DeleteUser($userId)
+{
     global $output;
+
+    if (!isset($_SESSION["role"]) || ($_SESSION["role"] != "root" && $_SESSION["role"] != "admin")) {
+        $output["status"] = "Access denied";
+        $output["valid"] = false;
+        return;
+    }
+
+
+    $query = "SELECT r.roleValue
+             FROM UsersRoles ur
+             JOIN Roles r ON ur.roleId = r.roleId
+             WHERE ur.userId = '$userId'
+             ";
+
+    $result = mySqlQuery($query);
+    $row = $result->fetch_assoc();
+    $userRoleValue = $row["roleValue"];
+
+    $query = " SELECT r.roleValue
+               FROM UsersRoles ur
+               JOIN Roles r ON ur.roleId = r.roleId
+               JOIN Users u ON ur.userId = u.userId
+               WHERE u.userName = '{$_SESSION["username"]}'
+    ";
+    $result = mySqlQuery($query);
+    $row = $result->fetch_assoc();
+    $currentUserRoleValue = $row["roleValue"];
+
+    if ($currentUserRoleValue >= $userRoleValue) {
+        $output["status"] = "You cannot delete a user with equal or higher privileges";
+        $output["valid"] = false;
+        return;
+    }
+
     $query1 = "DELETE FROM UsersRoles WHERE userId='$userId'";
     $query2 = "DELETE FROM Users WHERE userId='$userId'";
-    if(mySqlNonQuery($query1) < 0 || mySqlNonQuery($query2) < 0){
+    if (mySqlNonQuery($query1) < 0 || mySqlNonQuery($query2) < 0) {
         $output["status"] = "Error deleting user";
         $output["valid"] = false;
-    }
-    else{
+    } else {
         $output["status"] = "User deleted successfully";
         $output["valid"] = true;
     }
