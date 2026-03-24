@@ -1,0 +1,12 @@
+input
+{
+    display: block;
+    margin:1%;
+    background-color: black;
+    color:aquamarine;
+    border: 2px solid aqua;
+}
+body{
+    background-color: black;
+    color:aquamarine;
+}

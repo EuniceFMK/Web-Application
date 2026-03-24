@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <img src="logo.png" alt="Tim Hortons Logo">
+
+    </header>
+    <label for="location">Select the Location:</label>
+    <select name="location" id="location">
+       
+    </select>
+
+    <h1>Select your items from the menu:</h1>
+    
+    <ol id="menuList"></ol>
+    <div>
+        <label for="">Order Processing</label>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="">Item ordered:</label>
+        <select name="items" id="items">
+           
+        </select>
+
+        <label for="">How many items:</label>
+        <input type="number" id="quantity" name="quantity">
+
+        <label for="">How would you like to pay [credit/debit/cash]:</label>
+        <select name="payment" id="payment">
+            <option value="">Credit</option>
+            <option value="">Debit</option>
+            <option value="">Cash</option>
+        </select>
+
+        <button type="button">Place Order</button>
+    </div>
+
+    <h1>Order Details</h1>
+    <div>
+
+    </div>
+</body>
+
+</html>

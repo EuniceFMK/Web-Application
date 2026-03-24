@@ -186,6 +186,7 @@ function RegisterByRoot($username, $password, $roleId)
 
     $results = mySqlQuery($query);
     $row = $results->fetch_assoc();
+    
 
     if (strlen($username) < 4) {
         $output["status"] = "Username too short";

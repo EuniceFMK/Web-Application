@@ -1,0 +1,91 @@
+[
+  {
+    "ContainingType": "Demo01ASP.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_1",
+    "RelativePath": "",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Demo01ASP.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_3",
+    "RelativePath": "registerGet",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "getName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "getAge",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Demo01ASP.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_4",
+    "RelativePath": "registerPost",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cl",
+        "Type": "Demo01ASP.Program\u002BClientData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Demo01ASP.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_2",
+    "RelativePath": "special",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

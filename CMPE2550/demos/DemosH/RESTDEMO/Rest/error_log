@@ -1,0 +1,20 @@
+[21-Mar-2025 19:51:33 UTC] Inside API.php GET:{"request":"message\/place\/40\/h1\/76","GETtest":"This is data in the GET object."}
+[21-Mar-2025 19:51:33 UTC] Inside API.php Request:"message\/place\/40\/h1\/76"
+[21-Mar-2025 19:51:33 UTC] Inside Constructor function 
+[21-Mar-2025 19:51:33 UTC] Inside constructor: GET
+[21-Mar-2025 19:51:33 UTC] Request: message/place/40/h1/76
+[21-Mar-2025 19:51:33 UTC] GET: {"request":"message\/place\/40\/h1\/76","GETtest":"This is data in the GET object."}
+[21-Mar-2025 19:51:33 UTC] Post: []
+[21-Mar-2025 19:51:33 UTC] 
+[21-Mar-2025 19:51:33 UTC] Inside Parse Request method
+[21-Mar-2025 19:51:33 UTC] Mehtod: "GET"
+[21-Mar-2025 19:51:33 UTC] Endpoint: "message"
+[21-Mar-2025 19:51:33 UTC] Verb: "place"
+[21-Mar-2025 19:51:33 UTC] Arguments: ["40","h1","76"]
+[21-Mar-2025 19:51:33 UTC] File: null
+[21-Mar-2025 19:51:33 UTC] 
+[21-Mar-2025 19:51:33 UTC] Inside API.PHP after constructor call
+[21-Mar-2025 19:51:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getMessage() in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/RESTDEMO/Rest/api.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/RESTDEMO/Rest/api.php on line 16

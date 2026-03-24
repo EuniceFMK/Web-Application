@@ -1,0 +1,4 @@
+[16-Jan-2025 21:28:37 UTC] PHP Warning:  Undefined variable $POST in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo02a/dashboard.php on line 2
+[16-Jan-2025 21:28:37 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo02a/dashboard.php on line 2
+[16-Jan-2025 21:34:54 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo02a/dashboard.php on line 2
+[16-Jan-2025 21:34:54 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo02a/dashboard.php on line 2
