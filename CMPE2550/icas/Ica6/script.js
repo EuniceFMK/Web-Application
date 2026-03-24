@@ -1,4 +1,5 @@
 let allMenus = {};
+let item
 $(document).ready(() => {
 
     CallAjax("https://localhost:7057/welcome",
@@ -18,6 +19,13 @@ $(document).ready(() => {
         let selectedLocation = $(this).val();
         updateMenu(selectedLocation);
     })
+
+    $("#items").change(function () {
+        item = $("#items").val();
+        console.log(item);
+    })
+
+    $("#orderButton").click(Order);
 });
 /**
  * FunctionName:    CallAjax
@@ -34,7 +42,13 @@ function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
     let ajaxOptions = {};
     ajaxOptions["url"] = url;
     ajaxOptions["method"] = method;
-    ajaxOptions["data"] = data;
+    if (method == "get")
+        ajaxOptions["data"] = data;
+    if (method == "post")
+    {
+        ajaxOptions["data"] = JSON.stringify(data);
+        ajaxOptions["contentType"] = "application/json";
+    }
     ajaxOptions["dataType"] = dataType;
     ajaxOptions["success"] = successCallback;
     ajaxOptions["error"] = errorCallback;
@@ -78,6 +92,7 @@ function LocationCallBack(response) {
     $("#location").html(locPlace);
 
     updateMenu(response.locations[0]);
+    Order();
 }
 
 function updateMenu(location) {
@@ -93,4 +108,42 @@ function updateMenu(location) {
 
     $("#menuList").html(menuPlace);
     $("#items").html(optionsPlace);
+    item = $("#items").val();
+    console.log(item);
 }
+
+function Order() {
+
+    let qty = parseInt($("#quantity").val());
+    let payment = $("#payment").val();
+
+    $("#items").change(function () {
+        item = $("#items").val();
+        console.log(item);
+    })
+
+    if (isNaN(qty)) {
+        alert("Please enter a valid quantity");
+        return;
+    }
+
+    CallAjax("https://localhost:7057/order",
+        "post",
+        {
+            name: $("#name").val(),
+            item: item,
+            quantity: qty,
+            payment: payment
+        },
+        "json",
+        function (response) {
+            console.log("In order");
+            console.log(response.output);
+            $("#output").text(response.output);
+        },
+        ajaxError
+    )
+
+
+}
+

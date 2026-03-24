@@ -46,7 +46,18 @@ namespace ServiceWebICA6
                 return Results.Ok(new { locations = locations, menus = menus });
             });
 
-            app.Run();
+            app.MapPost("/order", (Info i) =>
+            {
+                double.TryParse((i.item.Split("$")[1].Trim()), out double price);
+
+                double cost = price * i.quantity;
+
+                return Results.Ok(new { output = $"Order sucessfully placed:\n {i.name}\n{i.item}: {cost}\n {i.payment}" });
+
+            });
+            app.Run();  
         }
+
+        record Info(string name, string item, int quantity, string payment);
     }
 }
