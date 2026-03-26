@@ -15,16 +15,16 @@
         <img src="logo.png" alt="Tim Hortons Logo">
 
     </header>
-    <label for="location">Select the Location:</label>
+    <h1>Select the Location:</h1>
     <select name="location" id="location">
-       
+      
     </select>
-
-    <h1>Select your items from the menu:</h1>
-    
+   
     <ol id="menuList"></ol>
+
+    <h1>Order Processing</h1>
     <div>
-        <label for="">Order Processing</label>
+        
         <label for="name">Name:</label>
         <input type="text" id="name" name="name">
         <label for="">Item ordered:</label>
@@ -37,9 +37,10 @@
 
         <label for="">How would you like to pay [credit/debit/cash]:</label>
         <select name="payment" id="payment">
-            <option value="">Credit</option>
-            <option value="">Debit</option>
-            <option value="">Cash</option>
+            <option value="sel">Select a payment method: </option>
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+            <option value="Cash">Cash</option>
         </select>
 
         <button type="button" id="orderButton">Place Order</button>

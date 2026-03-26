@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Hosting;
 using System.Security.Cryptography.X509Certificates;
 
 namespace ServiceWebICA6
@@ -48,11 +49,52 @@ namespace ServiceWebICA6
 
             app.MapPost("/order", (Info i) =>
             {
-                double.TryParse((i.item.Split("$")[1].Trim()), out double price);
+                string errormessage = "";
+                bool valid = false;
+                double cost=0;
 
-                double cost = price * i.quantity;
+                if (i.name.Length == 0)
+                {
+                    errormessage = "Please enter your name";
+                    valid = false;
+                }
+                else if(i.item== "select")
+                {
+                    errormessage = "Please select an item from the menu ";
+                    valid = false;
+                }
+                else if (i.quantity <= 0)
+                {
+                    errormessage = "Enter a valid number of items (at least 1)";
+                    valid = false;
+                }
+                else if (i.payment == "sel")
+                {
+                    errormessage = "Please select a payment method";
+                    valid = false;
+                }
+                else
+                {
 
-                return Results.Ok(new { output = $"Order sucessfully placed:\n {i.name}\n{i.item}: {cost}\n {i.payment}" });
+                    double.TryParse((i.item.Split("$")[1].Trim()), out double price);
+
+                    cost = price * i.quantity;
+                    valid = true;
+                }
+
+                if (valid == true)
+                {
+                    Random rand = new Random();
+                    int min = rand.Next(5, 31);
+                    Console.WriteLine(min);
+                    return Results.Ok(new { output = $"Order sucessfully placed", paiement = $"{cost}", valid=true, time = min });
+                }
+                else
+                {
+                    
+                    return Results.Ok(new { output = $"Order placement denied", paiement = $"{errormessage}" ,valid=false } );
+                }
+               
 
             });
             app.Run();  

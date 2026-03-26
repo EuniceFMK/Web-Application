@@ -128,3 +128,81 @@ button:hover {
 h1 + div:last-child {
     min-height: 80px;
 }
+
+/* Order Summary Card */
+.order-summary {
+    background: linear-gradient(to right, #fff, #fff5f5);
+    border-left: 6px solid #d71920;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease-in-out;
+    transition: transform 0.2s;
+    
+}
+
+.order-summary:hover {
+    transform: scale(1.02);
+}
+/* Title */
+.order-summary h2 {
+    color: green;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Text */
+.order-summary p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* Highlight labels */
+.order-summary strong {
+    color: #333;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success{
+    text-align: center;
+    color:rgb(5, 172, 5);
+}
+
+div .row {
+    display: grid;
+    grid-template-columns: 100px 300px;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-summary .label {
+    font-weight: 600;
+    color: #333;
+    grid-column: 1/2;
+}
+
+span .value {
+    color: #555;
+    text-align: right;
+    grid-column: 2/2;
+    
+}
+
+.successfailed{
+    text-align: center;
+    color:red;
+}
+

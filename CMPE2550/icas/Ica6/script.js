@@ -18,6 +18,11 @@ $(document).ready(() => {
     $("#location").change(function () {
         let selectedLocation = $(this).val();
         updateMenu(selectedLocation);
+         if ($("#location").val() == "loc") {
+          $("#menuList").empty();
+           $("#items").empty();
+        }
+        
     })
 
     $("#items").change(function () {
@@ -44,8 +49,7 @@ function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
     ajaxOptions["method"] = method;
     if (method == "get")
         ajaxOptions["data"] = data;
-    if (method == "post")
-    {
+    if (method == "post") {
         ajaxOptions["data"] = JSON.stringify(data);
         ajaxOptions["contentType"] = "application/json";
     }
@@ -84,36 +88,56 @@ function LocationCallBack(response) {
     console.log(response);
     allMenus = response.menus;
     let locPlace = "";
-
+    locPlace += `<option value="loc">Choose your location</option>`;
     response.locations.forEach(function (loc) {
         locPlace += `<option value="${loc}">${loc}</option>`;
     })
 
     $("#location").html(locPlace);
 
-    updateMenu(response.locations[0]);
-    Order();
+    if ($("#location").val() == "loc") {
+        $("#menuList").empty();
+    }
+
+
 }
 
 function updateMenu(location) {
-    let menu = allMenus[location];
 
-    let menuPlace = "";
-    let optionsPlace = "";
+        console.log(location);
+        $("#menuList").empty();
+        if(location=="loc")
+            return;
+        let menu = allMenus[location];
 
-    menu.forEach(function (item) {
-        menuPlace += `<li>${item}</li>`;
-        optionsPlace += `<option value="${item}">${item}</option>`;
-    })
+        let menuPlace = "";
+        let optionsPlace = "";
+        optionsPlace += `<option value="select">Select your item from the menu</option>`;
+        menu.forEach(function (item) {
+            menuPlace += `<li>${item}</li>`;
+            optionsPlace += `<option value="${item}">${item}</option>`;
+        })
 
-    $("#menuList").html(menuPlace);
-    $("#items").html(optionsPlace);
-    item = $("#items").val();
+        $("#menuList").append("<h1>Select your item from the menu list</h1>")
+        $("#menuList").append(menuPlace);
+        $("#items").html(optionsPlace);
+        item = $("#items").val();
+    
+
     console.log(item);
 }
 
 function Order() {
 
+    if($("#location").val() == "loc"){
+         let div = `<div class="order-summary successfailed"> 
+                   Please select a pickup location<br>  
+               </div>`
+
+                $("#output").html(div);
+                return;
+    }
+        
     let qty = parseInt($("#quantity").val());
     let payment = $("#payment").val();
 
@@ -123,7 +147,7 @@ function Order() {
     })
 
     if (isNaN(qty)) {
-        alert("Please enter a valid quantity");
+        $("#output").text("Please enter a valid quantity");
         return;
     }
 
@@ -139,7 +163,46 @@ function Order() {
         function (response) {
             console.log("In order");
             console.log(response.output);
-            $("#output").text(response.output);
+            console.log(response.paiement);
+
+            if (response.valid) {
+                let div = `<div class="order-summary">
+               <h2>Order Summary</h2>
+
+               <div class="row">
+                   <span class="label">Name:</span>
+                   <span class="value">${$("#name").val()}</span>
+                   <br> 
+                   <span class="label">Location:</span>
+                   <span class="value">${$("#location").val()}</span>
+                   <br> 
+                   <span class="label">Item:</span>
+                   <span class="value">${item}</span> <br>
+                   <span class="label">Quantity:</span>
+                   <span class="value">${qty}</span> <br>
+                    <span class="label">Cost:</span>
+                   <span class="value">${response.paiement}</span> <br>    
+                   <span class="label">Payment:</span>
+                   <span class="value">${payment}</span> <br>          
+               </div>
+               <div class="success">
+                   ${response.output}
+                   <p>Your order will be ready for pickup in ${response.time} minutes </p>
+               </div>
+           </div>`;
+                $("#output").html(div);
+            }
+            else {
+                let div = `<div class="order-summary successfailed"> 
+                   ${response.paiement}<br>  
+                   ${response.output}
+               </div>`
+
+                $("#output").html(div);
+            }
+
+
+
         },
         ajaxError
     )
