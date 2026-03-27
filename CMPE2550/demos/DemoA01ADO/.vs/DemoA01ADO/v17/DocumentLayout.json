@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\shanek\\source\\repos\\DemoA01ADO\\",
+  "WorkspaceRootPath": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\CMPE2550\\demos\\DemoA01ADO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|c:\\users\\shanek\\source\\repos\\demoa01ado\\demoa01ado\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|solutionrelative:demoa01ado\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\cmpe2550\\demos\\demoa01ado\\demoa01ado\\dac\\northwinddac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|solutionrelative:demoa01ado\\dac\\northwinddac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|c:\\users\\shanek\\source\\repos\\demoa01ado\\demoa01ado\\dac\\northwinddac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|solutionrelative:demoa01ado\\dac\\northwinddac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\cmpe2550\\demos\\demoa01ado\\demoa01ado\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{348D3207-A135-4F5B-8EDF-40385307291C}|DemoA01ADO\\DemoA01ADO.csproj|solutionrelative:demoa01ado\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,15 +18,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\shanek\\source\\repos\\DemoA01ADO\\DemoA01ADO\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\CMPE2550\\demos\\DemoA01ADO\\DemoA01ADO\\Program.cs",
               "RelativeDocumentMoniker": "DemoA01ADO\\Program.cs",
-              "ToolTip": "C:\\Users\\shanek\\source\\repos\\DemoA01ADO\\DemoA01ADO\\Program.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\CMPE2550\\demos\\DemoA01ADO\\DemoA01ADO\\Program.cs",
               "RelativeToolTip": "DemoA01ADO\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -35,13 +35,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "NorthwindDAC.cs",
-              "DocumentMoniker": "C:\\Users\\shanek\\source\\repos\\DemoA01ADO\\DemoA01ADO\\DAC\\NorthwindDAC.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\CMPE2550\\demos\\DemoA01ADO\\DemoA01ADO\\DAC\\NorthwindDAC.cs",
               "RelativeDocumentMoniker": "DemoA01ADO\\DAC\\NorthwindDAC.cs",
-              "ToolTip": "C:\\Users\\shanek\\source\\repos\\DemoA01ADO\\DemoA01ADO\\DAC\\NorthwindDAC.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\CMPE2550\\demos\\DemoA01ADO\\DemoA01ADO\\DAC\\NorthwindDAC.cs",
               "RelativeToolTip": "DemoA01ADO\\DAC\\NorthwindDAC.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAQwEwAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-12T20:41:02.297Z",
               "EditorCaption": ""

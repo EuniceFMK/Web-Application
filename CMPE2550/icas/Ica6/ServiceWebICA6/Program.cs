@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Hosting;
+using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 
 namespace ServiceWebICA6
@@ -75,9 +76,11 @@ namespace ServiceWebICA6
                 }
                 else
                 {
+                    Console.WriteLine($"The item is: {i.item}");
 
-                    double.TryParse((i.item.Split("$")[1].Trim()), out double price);
-
+                    double.TryParse(i.item.Split("$")[1].Trim(), NumberStyles.Any,
+                                                   CultureInfo.InvariantCulture, out double price);
+                    Console.Write($"The price is: {price}");
                     cost = price * i.quantity;
                     valid = true;
                 }
