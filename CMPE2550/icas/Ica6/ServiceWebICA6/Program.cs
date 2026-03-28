@@ -94,11 +94,8 @@ namespace ServiceWebICA6
                 }
                 else
                 {
-                    
                     return Results.Ok(new { output = $"Order placement denied", paiement = $"{errormessage}" ,valid=false } );
                 }
-               
-
             });
             app.Run();  
         }
