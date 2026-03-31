@@ -1,5 +1,6 @@
 let currentst = null;
 $(document).ready(() => {
+    $("#stresult").hide();
 
     CallAjax("https://localhost:7226",
         "get",
@@ -21,6 +22,8 @@ function loadStudents(response) {
 
     let data = response.students.slice(1); // skip headers
     data.forEach(st => {
+      
+
         let row =
             ` <tr>
                 <td>
@@ -81,6 +84,7 @@ function ajaxError(req, status, err) {
 function getStudents(stid) {
     currentst = stid;
     console.log(parseInt(stid));
+
     CallAjax(`https://localhost:7226/StudentInfo?id=${stid}`,
         "GET",
         {
@@ -92,8 +96,9 @@ function getStudents(stid) {
     );
 }
 
-function loadStudentInfo(response){
- let result = $("#stresult-body");
+function loadStudentInfo(response) {
+
+    let result = $("#stresult-body");
     let i = 0;
     $("#stresult").show();
     result.empty();
@@ -110,7 +115,10 @@ function loadStudentInfo(response){
     $("#outputres").empty();
     let data = response.studentsInfo.slice(1);
     data.forEach(st => {
-
+       let mess = `Retrieved information for student with id ${st[0]}`
+        $("#stinfo").empty();
+        $("#stinfo").append(mess);
+       
         let row = $("<tr>").data('stid', st[0]);
         i = 0;
         console.log(`${st[0]}`);
@@ -120,7 +128,7 @@ function loadStudentInfo(response){
         row.append($("<td>").text(st[3]));
         row.append($("<td>").text(st[4]));
         row.append($("<td>").text(st[5]));
-         row.append($("<td>").text(st[6]));
+        row.append($("<td>").text(st[6]));
 
         result.append(row);
 
