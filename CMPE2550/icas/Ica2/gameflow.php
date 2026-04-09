@@ -98,48 +98,60 @@ die();
  */
 function victoryCheck($board, $mark)
 {
-    // Check rows
+    // Lignes
     for ($r = 0; $r < 3; $r++) {
-        // Check columns
         if (
             $board[$r][0] == $mark &&
             $board[$r][1] == $mark &&
             $board[$r][2] == $mark
         ) {
-            return true;  // Player with $mark has won
+            return [
+                "type" => "row",
+                "cells" => [[$r, 0], [$r, 1], [$r, 2]]
+            ];
         }
     }
 
-    // Check columns
+    // Colonnes
     for ($c = 0; $c < 3; $c++) {
-        // Check rows
         if (
             $board[0][$c] == $mark &&
             $board[1][$c] == $mark &&
             $board[2][$c] == $mark
         ) {
-            return true;  // Player with $mark has won
+            return [
+                "type" => "col",
+                "cells" => [[0, $c], [1, $c], [2, $c]]
+            ];
         }
     }
-    // Check diagonals
+
+    // Diagonale principale
     if (
         $board[0][0] == $mark &&
         $board[1][1] == $mark &&
         $board[2][2] == $mark
     ) {
-        return true;  // Player with $mark has won
+        return [
+            "type" => "diag",
+            "cells" => [[0, 0], [1, 1], [2, 2]]
+        ];
     }
-    // Check anti-diagonal
+
+    // Anti-diagonale
     if (
         $board[0][2] == $mark &&
         $board[1][1] == $mark &&
         $board[2][0] == $mark
     ) {
-        return true; // Player with $mark has won
+        return [
+            "type" => "anti-diag",
+            "cells" => [[0, 2], [1, 1], [2, 0]]
+        ];
     }
-    return false;  // No winner found
-}
 
+    return false;
+}
 /**
  * FunctionName:    nullGame
  * Inputs:          $board - 2D array representing the tic-tac-toe board
@@ -205,11 +217,14 @@ function playMove()
     }
     $mark = $_SESSION["mark"];                          // Get the current player's mark ('X' or 'O')
     $_SESSION["board"][$row][$col] = $mark;            // Place the mark on the board
-    if (victoryCheck($_SESSION["board"], $mark)) {
-        $output["status"] = $_SESSION["currentPlayer"] . " wins!";  // Set victory message
-        $_SESSION["gameOver"] = true;   // Mark the game as over
-        $output["gameOver"] = true;    // Indicate game over status
-        $output["board"] = $_SESSION["board"];     // Return the current board
+    $result = victoryCheck($_SESSION["board"], $mark);
+
+    if ($result) {
+        $output["status"] = $_SESSION["currentPlayer"] . " wins (" . $result["type"] . ")!";
+        $_SESSION["gameOver"] = true;
+        $output["gameOver"] = true;
+        $output["board"] = $_SESSION["board"];
+        $output["winCells"] = $result["cells"]; //  IMPORTANT
         return;
     }
     if (nullGame($_SESSION["board"])) {

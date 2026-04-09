@@ -3,12 +3,6 @@ CREATE DATABASE
 IF NOT EXISTS efmukamt1251_Test;
 USE efmukamt1251_Test;
 
-SET SQL_MODE
-= "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone
-= "+00:00";
-
-
 -- Drop tables (safe re-import)
 DROP TABLE IF EXISTS titleauthor;
 DROP TABLE IF EXISTS titles;
@@ -23,7 +17,7 @@ CREATE TABLE authors
     au_fname VARCHAR(20) NOT NULL,
     phone CHAR(12) NOT NULL DEFAULT 'UNKNOWN'
 )
-ENGINE=InnoDB;
+
 
 
 -- Titles table
@@ -39,7 +33,7 @@ CREATE TABLE titles
     ytd_sales INT,
     notes VARCHAR(200)
 )
-ENGINE=InnoDB;
+
 
 
 -- TitleAuthor junction table
@@ -59,7 +53,7 @@ CREATE TABLE titleauthor
         ON DELETE CASCADE
         ON UPDATE CASCADE
 )
-ENGINE=InnoDB;
+
 
 
 -- Insert authors
