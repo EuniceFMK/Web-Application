@@ -30,8 +30,8 @@ function loadStudents(response) {
                     <button onclick = "getStudents('${st[0]}')"> Retrieve</button>
                 </td>
                 <td>${st[0]}</td>
-                <td>${st[1]}</td>
                 <td>${st[2]}</td>
+                <td>${st[1]}</td>
                 <td>${st[3]}</td>
             </tr>`;
         tbody.append(row);
@@ -127,8 +127,8 @@ function loadStudentInfo(response) {
         row.append($("<td>").text(st[2]));
         row.append($("<td>").text(st[3]));
         row.append($("<td>").text(st[4]));
-        row.append($("<td>").text(st[5]));
         row.append($("<td>").text(st[6]));
+        row.append($("<td>").text(st[5]));
 
         result.append(row);
 
