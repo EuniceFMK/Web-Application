@@ -1,0 +1,122 @@
+[14-Feb-2025 20:24:01 UTC] Connection is successful
+[14-Feb-2025 20:24:01 UTC] Connectin part done
+[14-Feb-2025 20:24:01 UTC] Queryselect * from Students
+[14-Feb-2025 20:24:01 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:24:01 UTC] Before While
+[14-Feb-2025 20:24:01 UTC] Inside while loop
+[14-Feb-2025 20:24:01 UTC] Inside while loop
+[14-Feb-2025 20:24:01 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:24:01 UTC] Success
+[14-Feb-2025 20:24:01 UTC] call DeleteStudent(5)
+[14-Feb-2025 20:24:01 UTC] Success
+[14-Feb-2025 20:24:05 UTC] Connection is successful
+[14-Feb-2025 20:24:05 UTC] Connectin part done
+[14-Feb-2025 20:24:05 UTC] Queryselect * from Students
+[14-Feb-2025 20:24:05 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:24:05 UTC] Before While
+[14-Feb-2025 20:24:05 UTC] Inside while loop
+[14-Feb-2025 20:24:05 UTC] Inside while loop
+[14-Feb-2025 20:24:05 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:24:05 UTC] Success
+[14-Feb-2025 20:24:05 UTC] call DeleteStudent(5)
+[14-Feb-2025 20:24:05 UTC] Success
+[14-Feb-2025 20:24:09 UTC] Connection is successful
+[14-Feb-2025 20:24:09 UTC] Connectin part done
+[14-Feb-2025 20:24:09 UTC] Queryselect * from Students
+[14-Feb-2025 20:24:09 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:24:09 UTC] Before While
+[14-Feb-2025 20:24:09 UTC] Inside while loop
+[14-Feb-2025 20:24:09 UTC] Inside while loop
+[14-Feb-2025 20:24:09 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:24:09 UTC] Success
+[14-Feb-2025 20:24:09 UTC] call DeleteStudent(5)
+[14-Feb-2025 20:24:09 UTC] Success
+[14-Feb-2025 20:24:22 UTC] Connection is successful
+[14-Feb-2025 20:24:22 UTC] Connectin part done
+[14-Feb-2025 20:24:22 UTC] Queryselect * from Students
+[14-Feb-2025 20:24:22 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:24:22 UTC] Before While
+[14-Feb-2025 20:24:22 UTC] Inside while loop
+[14-Feb-2025 20:24:22 UTC] Inside while loop
+[14-Feb-2025 20:24:22 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:24:22 UTC] Success
+[14-Feb-2025 20:24:22 UTC] call DeleteStudent(3)
+[14-Feb-2025 20:24:22 UTC] Success
+[14-Feb-2025 20:24:30 UTC] Connection is successful
+[14-Feb-2025 20:24:30 UTC] Connectin part done
+[14-Feb-2025 20:24:30 UTC] Queryselect * from Students
+[14-Feb-2025 20:24:30 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:24:30 UTC] Before While
+[14-Feb-2025 20:24:30 UTC] Inside while loop
+[14-Feb-2025 20:24:30 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:24:30 UTC] Success
+[14-Feb-2025 20:24:30 UTC] call DeleteStudent(3)
+[14-Feb-2025 20:24:30 UTC] Success
+[14-Feb-2025 20:29:22 UTC] PHP Parse error:  syntax error, unexpected variable "$query" in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo04DMLPART/index.php on line 88
+[14-Feb-2025 20:29:48 UTC] Connection is successful
+[14-Feb-2025 20:29:48 UTC] Connectin part done
+[14-Feb-2025 20:29:48 UTC] Queryselect * from Students
+[14-Feb-2025 20:29:48 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:29:48 UTC] Before While
+[14-Feb-2025 20:29:48 UTC] Inside while loop
+[14-Feb-2025 20:29:48 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:29:48 UTC] Success
+[14-Feb-2025 20:29:48 UTC] call DeleteStudent(3)
+[14-Feb-2025 20:29:48 UTC] Success
+[14-Feb-2025 20:29:48 UTC] call UpdateStudent('Harsimranjot', 4)
+[14-Feb-2025 20:29:48 UTC] Success
+[14-Feb-2025 20:30:33 UTC] Connection is successful
+[14-Feb-2025 20:30:33 UTC] Connectin part done
+[14-Feb-2025 20:30:33 UTC] Queryselect * from Students
+[14-Feb-2025 20:30:33 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:30:33 UTC] Before While
+[14-Feb-2025 20:30:33 UTC] Inside while loop
+[14-Feb-2025 20:30:33 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:30:33 UTC] Success
+[14-Feb-2025 20:30:33 UTC] call DeleteStudent(3)
+[14-Feb-2025 20:30:33 UTC] Success
+[14-Feb-2025 20:30:33 UTC] call UpdateStudent('Harsimran'jot', 4)
+[14-Feb-2025 20:30:33 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'jot', 4)' at line 1 in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo04DMLPART/DbUtil.php:85
+Stack trace:
+#0 /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo04DMLPART/DbUtil.php(85): mysqli->query('call UpdateStud...')
+#1 /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo04DMLPART/index.php(93): mysqlNonQuery('call UpdateStud...')
+#2 {main}
+  thrown in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo04DMLPART/DbUtil.php on line 85
+[14-Feb-2025 20:31:22 UTC] Connection is successful
+[14-Feb-2025 20:31:22 UTC] Connectin part done
+[14-Feb-2025 20:31:22 UTC] Queryselect * from Students
+[14-Feb-2025 20:31:22 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:31:22 UTC] Before While
+[14-Feb-2025 20:31:22 UTC] Inside while loop
+[14-Feb-2025 20:31:22 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:31:22 UTC] Success
+[14-Feb-2025 20:31:22 UTC] call DeleteStudent(3)
+[14-Feb-2025 20:31:22 UTC] Success
+[14-Feb-2025 20:31:22 UTC] call UpdateStudent('Harsimran\'jot', 4)
+[14-Feb-2025 20:31:22 UTC] Success
+[14-Feb-2025 20:35:37 UTC] Connection is successful
+[14-Feb-2025 20:35:37 UTC] Connectin part done
+[14-Feb-2025 20:35:37 UTC] Queryselect * from Students
+[14-Feb-2025 20:35:37 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:35:37 UTC] Before While
+[14-Feb-2025 20:35:37 UTC] Inside while loop
+[14-Feb-2025 20:35:37 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:35:37 UTC] Success
+[14-Feb-2025 20:35:37 UTC] call DeleteStudent(3)
+[14-Feb-2025 20:35:37 UTC] Success
+[14-Feb-2025 20:35:37 UTC] Harsimra\n\'jot
+[14-Feb-2025 20:35:37 UTC] call UpdateStudent('Harsimra\n\'jot', 4)
+[14-Feb-2025 20:35:37 UTC] Success
+[14-Feb-2025 20:36:28 UTC] Connection is successful
+[14-Feb-2025 20:36:28 UTC] Connectin part done
+[14-Feb-2025 20:36:28 UTC] Queryselect * from Students
+[14-Feb-2025 20:36:28 UTC] Inside DBUTIL before returning result set
+[14-Feb-2025 20:36:28 UTC] Before While
+[14-Feb-2025 20:36:28 UTC] Inside while loop
+[14-Feb-2025 20:36:28 UTC] delete from Students where sid= 1
+[14-Feb-2025 20:36:28 UTC] Success
+[14-Feb-2025 20:36:28 UTC] call DeleteStudent(3)
+[14-Feb-2025 20:36:28 UTC] Success
+[14-Feb-2025 20:36:28 UTC] Har\\simran\'jot
+[14-Feb-2025 20:36:28 UTC] call UpdateStudent('Har\\simran\'jot', 4)
+[14-Feb-2025 20:36:28 UTC] Success

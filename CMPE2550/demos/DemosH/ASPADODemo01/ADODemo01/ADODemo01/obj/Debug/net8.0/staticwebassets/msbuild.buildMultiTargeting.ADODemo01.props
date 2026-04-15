@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\ADODemo01.props" />
-</Project>

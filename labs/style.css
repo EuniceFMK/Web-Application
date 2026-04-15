@@ -1,0 +1,67 @@
+
+h1 {
+    font-size: 2.4rem;
+    color: #6a1b9a;
+    text-align: center;
+}
+
+.lab-nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.home-link {
+    background: #ce93d8;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #4a148c;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(120, 60, 180, 0.2);
+    transition: 0.3s;
+}
+
+.home-link:hover {
+    background: #ab47bc;
+    color: white;
+    transform: translateY(-4px);
+}
+
+
+.lab-list {
+    width: 60%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 25px 30px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(120, 50, 180, 0.2);
+}
+
+.lab-list h2 {
+    text-align: center;
+    color: #8e24aa;
+    font-size: 1.8rem;
+}
+
+.lab-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.lab-list li {
+    text-align: center;
+    margin: 12px 0;
+}
+
+.lab-list a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #6a1b9a;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.lab-list a:hover {
+    color: #4a148c;
+    text-shadow: 0 2px 6px rgba(120, 50, 180, 0.3);
+}

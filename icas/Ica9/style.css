@@ -1,0 +1,155 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: #f8f6f4;
+    /* blanc cassé */
+    color: #2c2c2c;
+    padding: 50px;
+}
+
+/* Header */
+header {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 35px;
+    color: #800020;
+    /* bordeaux */
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(128, 0, 32, 0.15);
+}
+
+/* Header row */
+thead {
+    background: linear-gradient(90deg, #800020, #a52a2a);
+    /* bordeaux */
+    color: #f5d27a;
+    /* or */
+}
+
+thead th {
+    padding: 20px;
+    text-align: left;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Rows */
+tbody tr {
+    border-bottom: 1px solid #f0e6e6;
+    transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #fff5f5;
+}
+
+/* Alternate rows */
+tbody tr:nth-child(even) {
+    background: #fcf8f8;
+}
+
+/* Cells */
+td {
+    padding: 18px;
+    font-size: 16px;
+}
+
+/* Button */
+button {
+    background: linear-gradient(135deg, #d4af37, #f5d27a);
+    /* or */
+    border: none;
+    color: #4a2c2a;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #c49b2c, #e6c15c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
+}
+
+/* Message row */
+tbody tr td[colspan] {
+    text-align: center;
+    padding: 28px;
+    font-size: 16px;
+    color: #800020;
+    font-style: italic;
+}
+
+/* Animation douce */
+table {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 25px;
+    }
+
+    header {
+        font-size: 26px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+    }
+}
+
+#retrieved {
+    text-align: center;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#outputres {
+    text-align: center;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#stinfo{
+    text-align: center;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

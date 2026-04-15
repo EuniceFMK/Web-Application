@@ -1,0 +1,8 @@
+[31-Jan-2025 21:33:43 UTC] Connection is successful
+[31-Jan-2025 21:33:43 UTC] Connectin part done
+[31-Jan-2025 21:33:43 UTC] Queryselect * from Students
+[31-Jan-2025 21:33:43 UTC] Inside DBUTIL before returning result set
+[31-Jan-2025 21:33:43 UTC] Before While
+[31-Jan-2025 21:33:43 UTC] Inside while loop
+[31-Jan-2025 21:33:43 UTC] Inside while loop
+[31-Jan-2025 21:33:43 UTC] Inside while loop

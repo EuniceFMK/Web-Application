@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>ASP ADO Assignnment 02 - Data Manipulation</header>
+    <table>
+        <thead>
+            <tr>
+            <th>Get Students</th>
+            <th>Student ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>School Id</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <div id="retrieved"></div> <br>
+
+    <div id="stinfo"></div>
+    <div id="stresult">
+            <table>
+                <thead>
+                    <th>ClassId</th>
+                    <th>Class Desc</th>
+                    <th>Days</th>
+                    <th>StartDate</th>
+                    <th>Instructor ID</th>
+                    <th>Instructor FirstName</th>
+                    <th>Instructor LastName</th>
+                </thead>
+                <tbody id="stresult-body"></tbody>
+            </table>
+
+        </div> <br>
+    <div id="outputres"></div>
+    <form id="addBookForm">
+        <label for=""> Student FirstName</label>
+        <input name="fnInput" type="text" id="fnInput" placeholder="Supply the student First Name">
+        <label for="">Student LastName</label>
+        <input name="lnInput" type="text" id="lnInput" placeholder="Supply the student Last Name">
+        <label for="">School ID</label>
+        <input name="shId" type="text" id="shId" placeholder="Supply the student school id">
+        <label for="">Class ID</label>
+        <select name="cID" id="cID">
+            <option value="BookGenre">Choose a school ID</option>
+        </select>
+        <button type="button" id="addBookBtn">Add Student</button>
+        <div id="outputresform"></div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[14-Jan-2025 21:17:41 UTC] PHP Warning:  Undefined array key "username" in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo01b/server.php on line 4
+[14-Jan-2025 21:21:19 UTC] PHP Warning:  Undefined array key "username" in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo01b/server.php on line 8
+[14-Jan-2025 21:31:46 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string + string in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo01b/server.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/aulakhha/public_html/1242/2550/CMPE2550ClassWork1242/CMPE2550A03/Demo01b/server.php on line 20
+[14-Jan-2025 21:32:32 UTC] Before cleaning kkj <p style=''color:red'> del database </p>
+[14-Jan-2025 21:32:32 UTC] After cleaning kkj 
