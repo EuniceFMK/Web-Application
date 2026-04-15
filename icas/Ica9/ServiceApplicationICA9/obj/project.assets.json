@@ -1207,11 +1207,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\CMPE2550\\icas\\Ica9\\ServiceApplicationICA9\\ServiceApplicationICA8.csproj",
+      "projectUniqueName": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\ServiceApplicationICA8.csproj",
       "projectName": "ServiceApplicationICA8",
-      "projectPath": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\CMPE2550\\icas\\Ica9\\ServiceApplicationICA9\\ServiceApplicationICA8.csproj",
+      "projectPath": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\ServiceApplicationICA8.csproj",
       "packagesPath": "C:\\Users\\efmukamngadjou1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\CMPE2550\\icas\\Ica9\\ServiceApplicationICA9\\obj\\",
+      "outputPath": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

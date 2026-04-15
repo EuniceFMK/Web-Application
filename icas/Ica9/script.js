@@ -62,7 +62,7 @@ function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
     ajaxOptions["method"] = method;
     if (method == "get")
         ajaxOptions["data"] = data;
-    if (method == "post" || method=="PUT") {
+    if (method == "POST" || method=="PUT") {
         ajaxOptions["data"] = JSON.stringify(data);
         ajaxOptions["contentType"] = "application/json";
     }

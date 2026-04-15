@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServiceApplicationICA8")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a57bcbb8e45643aee8d5d31a248cd8bcc0a115b6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4637e2d16d4cac9fa3282e596e56953dfd30be7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServiceApplicationICA8")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServiceApplicationICA8")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
