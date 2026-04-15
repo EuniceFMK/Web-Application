@@ -1,7 +1,7 @@
 let currentst = null;
 $(document).ready(() => {
     $("#stresult").hide();
-
+$("#outputres").hide();
     CallAjax("https://localhost:7226",
         "get",
         {},
@@ -9,15 +9,31 @@ $(document).ready(() => {
         loadStudents,
         ajaxError
     );
+
+
+    CallAjax("https://localhost:7226/ClassIds",
+        "GET",
+        {},
+        "json",
+        function (response) {
+            let cID = $("#cID");
+
+            response.classInfo.forEach(classId => {
+                let opt = $("<option>").val(classId[0]).text(classId[0]);
+                cID.append(opt);
+            });
+        },
+        ajaxError
+    )
 })
 
 function loadStudents(response) {
-    let tbody = $("tbody");
+    let tbody = $("#mainbody");
     tbody.empty();
 
     if (!response.students || response.students.length == 0) {
         tbody.append("<tr><td colspan='5'>No students found</td></tr>");
-        return;  
+        return;
     }
 
     let data = response.students.slice(1); // skip headers
@@ -62,7 +78,7 @@ function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
     ajaxOptions["method"] = method;
     if (method == "get")
         ajaxOptions["data"] = data;
-    if (method == "POST" || method=="PUT") {
+    if (method == "POST" || method == "PUT") {
         ajaxOptions["data"] = JSON.stringify(data);
         ajaxOptions["contentType"] = "application/json";
     }
@@ -107,15 +123,15 @@ function loadStudentInfo(response) {
     $("#stresult").show();
     result.empty();
     console.log(response);
-    if (!response.studentsInfo || response.studentsInfo.length == 0) {
-        $("#stresult").hide();
-        $("#outputres").empty();
-        let out = $("<tr>");
-        out.append($("<td>").text("No books found"));
-        $("#outputres").append(out);
-        return;
+    // if (!response.studentsInfo || response.studentsInfo.length == 0) {
+    //     $("#stresult").hide();
+    //     $("#outputres").empty();
+    //     let out = $("<tr>");
+    //     out.append($("<td>").text("No books found"));
+    //     $("#outputres").append(out);
+    //     return;
 
-    }
+    // }
     $("#outputres").empty();
     let data = response.studentsInfo.slice(1);
     data.forEach(st => {
@@ -162,9 +178,9 @@ function Delete(stid) {
         ajaxError
     );
 }
-function Edit(btn,stid) {
+function Edit(btn, stid) {
     //let btn = $(this);
-    currentst=stid;
+    currentst = stid;
     let row = $(btn).closest("tr");
     let action = row.find(".action");
     let firstname = row.find(".fn");
@@ -199,7 +215,7 @@ $(document).on("click", ".cancel", function () {
     firstname.text(firstname.data("oldContent"));
     lastname.text(lastname.data("oldContent"));
     schoolid.html(schoolid.data("oldContent"));
-    
+
 });
 
 //Update button click event handler
@@ -209,16 +225,22 @@ $(document).on("click", ".update", function () {
     let newfname = row.find(".fn input").val();
     let newlname = row.find(".ln input").val();
     let newsid = row.find(".ids input").val();
-     CallAjax(`https://localhost:7226/update/${currentst}`,
+    // if (isNaN(newsid) || newsid.trim() === "") {
+    //     $("#retrieved").text("School ID must be a valid number");
+    //     return;
+    // }
+    CallAjax(`https://localhost:7226/update/${currentst}`,
         "PUT",
         {
             id: parseInt(currentst),
-            fname:newfname,
-            lname:newlname,
-            shid: parseInt(newsid)
+            fname: newfname,
+            lname: newlname,
+            shid: newsid
         },
         "json",
-         function (response) {
+        function (response) {
+            $("#outputres").html(`${response.message}`);
+            $("#outputres").show();
             CallAjax("https://localhost:7226",
                 "get",
                 {},
@@ -229,5 +251,35 @@ $(document).on("click", ".update", function () {
         },
         ajaxError
     );
-    
+
+})
+
+$(document).on("click", "#addStudentBtn", function () {
+    let btn = $(this);
+    let row = btn.closest("tr");
+    let newfname = $("#fnInput").val();
+    let newlname = $("#lnInput").val();
+    let newsid = $("#shId").val();
+    let classid = $("#cID").val();
+    CallAjax(`https://localhost:7226/add`,
+        "POST",
+        {
+            fname: newfname,
+            lname: newlname,
+            shid: parseInt(newsid),
+            classid: classid
+        },
+        "json",
+        function (response) {
+            CallAjax("https://localhost:7226",
+                "get",
+                {},
+                "json",
+                loadStudents,
+                ajaxError
+            );
+        },
+        ajaxError
+    );
+
 })

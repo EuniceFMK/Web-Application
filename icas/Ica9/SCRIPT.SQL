@@ -7,3 +7,4 @@ Join Instructors i on i.instructor_id = c.instructor_id
 Join class_to_student cs on c.class_id = cs.class_id  
 Join Students s on cs.student_id = s.student_id 
 where s.student_id = '677';
+

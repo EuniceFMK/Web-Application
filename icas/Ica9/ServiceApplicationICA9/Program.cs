@@ -1,4 +1,5 @@
 using ServiceApplicationICA8;
+using System.Globalization;
 using System.Text.RegularExpressions;
 namespace ServiceApplicationICA8
 {
@@ -27,6 +28,12 @@ namespace ServiceApplicationICA8
                 return Results.Ok(new { studentsInfo = Student.GetStudentsInfo(id) });
             });
 
+
+            app.MapGet("/ClassIds", () =>
+            {
+                return Results.Ok(new { classInfo = Student.GetClassID() });
+            });
+
             app.MapDelete("/remove/{id}", (int id) =>
             {
                 Student.DeleteStudent(id);
@@ -35,8 +42,18 @@ namespace ServiceApplicationICA8
 
             app.MapPut("/update/{id}", (Info record) =>
             {
-                Student.EditStudent(record.id, record.fname, record.lname, record.shid);
-                return Results.Ok(new { students = Student.GetStudents() });
+                string mess;
+                if (!int.TryParse(record.shid, out int validShid))
+                    mess= "School ID must be a number";
+                else
+                    mess=Student.EditStudent(record.id, record.fname, record.lname, validShid);
+                return Results.Ok(new { students = Student.GetStudents(), message= mess });
+            });
+
+            app.MapPost("/add", (AddS record) =>
+            {
+                string mess=Student.AddStudent(record.fname, record.lname, record.shid, record.classid);
+                return Results.Ok(new { students = Student.GetStudents(), message= mess });
             });
 
             app.Run();
@@ -53,5 +70,6 @@ namespace ServiceApplicationICA8
         }
        
     }
-    record Info(int id, string fname, string lname, int shid);
+    record Info(int id, string fname, string lname, string shid);
+    record AddS(string fname, string lname, int shid, string classid);
 }

@@ -102,30 +102,83 @@ namespace ServiceApplicationICA8
             }
         }
 
-        public static void EditStudent(int id,string fname,string lname,int shid)
+        public static string EditStudent(int id,string fname,string lname,int shid)
         {
-            using(SqlConnection conn = new SqlConnection(connection))
+            try
             {
-                conn.Open();
-                string query1 = $"UPDATE Students SET last_name='{lname}', first_name='{fname}', school_id='{shid}'  WHERE student_id = {id}";
-                using (SqlCommand comm = new SqlCommand(query1, conn))
+
+
+                using (SqlConnection conn = new SqlConnection(connection))
                 {
-                 
-                    comm.ExecuteNonQuery();
+                    conn.Open();
+                    string query1 = $"UPDATE Students SET last_name='{lname}', first_name='{fname}', school_id='{shid}'  WHERE student_id = {id}";
+                    using (SqlCommand comm = new SqlCommand(query1, conn))
+                    {
+
+                        comm.ExecuteNonQuery();
+                    }
+                   
                 }
+                return "Student was successfully edited";
+            }
+            catch (SqlException ex)
+            {
+                return "SQL Error: " + ex.Message;
             }
         }
 
-        public static void AddStudent(int id, string fname, string lname, int shid)
+        public static List<List<string>> GetClassID()
         {
+            List<string> columnHeaders = new List<string>();
+            List<List<string>> rowData = new List<List<string>>();
+
             using (SqlConnection conn = new SqlConnection(connection))
             {
                 conn.Open();
-                string query1 = $"INSERT INTO Students ( last_name,first_name,school_id) values ('{lname}', '{fname}', '{shid}')";
-                using (SqlCommand comm = new SqlCommand(query1, conn))
+
+                //bool success=  int.TryParse(data, out int id);
+                //Console.WriteLine(success);
+                string query = $"Select c.class_desc from Classes c ";
+                using (SqlCommand comm = new SqlCommand(query, conn))
                 {
-                    comm.ExecuteNonQuery();
+                    using (SqlDataReader reader = comm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            List<string> row = new List<string>();
+                            for (int i = 0; i < reader.FieldCount; i++)
+                                row.Add(reader[i]?.ToString());
+                            rowData.Add(row);
+                        }
+                    }
                 }
+                return rowData;
+            }
+        }
+
+        public static string AddStudent(string fname, string lname, int shid, string classid)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    string query1 = $"INSERT INTO Students ( last_name,first_name,school_id) values ('{lname}', '{fname}', '{shid}')";
+                    using (SqlCommand comm = new SqlCommand(query1, conn))
+                    {
+                        comm.ExecuteNonQuery();
+                        
+                    }
+                }
+                return "Student added successfully";
+            }
+            catch(SqlException ex)
+            {
+                return "SQL Error: " + ex.Message;
+            }
+            catch(Exception ex)
+            {
+                return "General Error: " + ex.Message;
             }
         }
     } 

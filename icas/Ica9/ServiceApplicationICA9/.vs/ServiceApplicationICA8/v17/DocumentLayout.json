@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\",
+  "WorkspaceRootPath": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|c:\\users\\efmukamngadjou1\\downloads\\web-application\\icas\\ica9\\serviceapplicationica9\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|solutionrelative:student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\icas\\ica9\\serviceapplicationica9\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|c:\\users\\efmukamngadjou1\\downloads\\web-application\\icas\\ica9\\serviceapplicationica9\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\icas\\ica9\\serviceapplicationica9\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C663ED83-DB02-4D72-AC36-D5FFB5E84050}|ServiceApplicationICA8.csproj|solutionrelative:student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,33 +21,30 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Student.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Student.cs",
               "RelativeDocumentMoniker": "Student.cs",
-              "ToolTip": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Student.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Student.cs",
               "RelativeToolTip": "Student.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowD8AAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAHIAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-27T20:28:26.018Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\efmukamngadjou1\\Downloads\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Program.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica9\\ServiceApplicationICA9\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAYwDkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T20:27:57.948Z"
+              "WhenOpened": "2026-03-27T20:27:57.948Z",
+              "EditorCaption": ""
             }
           ]
         }
