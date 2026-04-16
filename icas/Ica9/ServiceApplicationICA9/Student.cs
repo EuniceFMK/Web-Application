@@ -11,21 +11,21 @@ namespace ServiceApplicationICA8
                                    "User Id=efmukamngadjou1;" +
                                    "Password=Rachel1980@,.;" +
                                    "Encrypt=False";
-     
+
 
         public static List<List<string>> GetStudents()
         {
             List<string> columnHeaders = new List<string>();
             List<List<string>> rowData = new List<List<string>>();
 
-            using(SqlConnection conn = new SqlConnection(connection))
+            using (SqlConnection conn = new SqlConnection(connection))
             {
                 conn.Open();
 
                 string query = "select * from Students Where first_name like 'E%' or  first_name like 'F%' order by first_name ";
-                using(SqlCommand comm = new SqlCommand(query, conn))
+                using (SqlCommand comm = new SqlCommand(query, conn))
                 {
-                    using(SqlDataReader reader = comm.ExecuteReader())
+                    using (SqlDataReader reader = comm.ExecuteReader())
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                             columnHeaders.Add(reader.GetName(i));
@@ -49,14 +49,14 @@ namespace ServiceApplicationICA8
             List<string> columnHeaders = new List<string>();
             List<List<string>> rowData = new List<List<string>>();
 
-            using(SqlConnection conn = new SqlConnection(connection))
+            using (SqlConnection conn = new SqlConnection(connection))
             {
                 conn.Open();
 
-               //bool success=  int.TryParse(data, out int id);
+                //bool success=  int.TryParse(data, out int id);
                 //Console.WriteLine(success);
                 string query = $"Select c.class_id,  c.class_desc,  c.days,  c.start_date, c.instructor_id  , i.last_name,i.first_name from Classes c Join Instructors i on i.instructor_id = c.instructor_id Join class_to_student cs on c.class_id = cs.class_id Join Students s on cs.student_id = s.student_id where s.student_id = '{data}'";
-                using(SqlCommand comm = new SqlCommand(query, conn))
+                using (SqlCommand comm = new SqlCommand(query, conn))
                 {
                     using (SqlDataReader reader = comm.ExecuteReader())
                     {
@@ -102,7 +102,12 @@ namespace ServiceApplicationICA8
             }
         }
 
-        public static string EditStudent(int id,string fname,string lname,int shid)
+        return new {
+            success = totalRows > 0,
+    rows = totalRows,
+    message = totalRows > 0 ? "Deleted successfully" : "Student not found"
+};
+        public static string EditStudent(int id, string fname, string lname, int shid)
         {
             try
             {
@@ -117,7 +122,7 @@ namespace ServiceApplicationICA8
 
                         comm.ExecuteNonQuery();
                     }
-                   
+
                 }
                 return "Student was successfully edited";
             }
@@ -167,19 +172,19 @@ namespace ServiceApplicationICA8
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
                         comm.ExecuteNonQuery();
-                        
+
                     }
                 }
                 return "Student added successfully";
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 return "SQL Error: " + ex.Message;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return "General Error: " + ex.Message;
             }
         }
-    } 
+    }
 }
