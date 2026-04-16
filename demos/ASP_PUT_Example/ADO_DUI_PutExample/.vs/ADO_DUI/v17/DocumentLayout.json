@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\",
+  "WorkspaceRootPath": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5E6095CB-70CD-4144-A488-9CD0DF5A880E}|ADO_DUI\\ADO_DUI.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\demos\\asp_put_example\\ado_dui_putexample\\ado_dui\\dac\\northwinddac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5E6095CB-70CD-4144-A488-9CD0DF5A880E}|ADO_DUI\\ADO_DUI.csproj|c:\\users\\efmukamngadjou1\\desktop\\cmpe2000\\web-application\\demos\\asp_put_example\\ado_dui_putexample\\ado_dui\\dac\\northwinddac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5E6095CB-70CD-4144-A488-9CD0DF5A880E}|ADO_DUI\\ADO_DUI.csproj|solutionrelative:ado_dui\\dac\\northwinddac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5E6095CB-70CD-4144-A488-9CD0DF5A880E}|ADO_DUI\\ADO_DUI.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\demos\\asp_put_example\\ado_dui_putexample\\ado_dui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5E6095CB-70CD-4144-A488-9CD0DF5A880E}|ADO_DUI\\ADO_DUI.csproj|c:\\users\\efmukamngadjou1\\desktop\\cmpe2000\\web-application\\demos\\asp_put_example\\ado_dui_putexample\\ado_dui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5E6095CB-70CD-4144-A488-9CD0DF5A880E}|ADO_DUI\\ADO_DUI.csproj|solutionrelative:ado_dui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,9 +24,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\Program.cs",
               "RelativeDocumentMoniker": "ADO_DUI\\Program.cs",
-              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\Program.cs",
+              "ToolTip": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\Program.cs",
               "RelativeToolTip": "ADO_DUI\\Program.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAQwEUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -37,11 +37,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "NorthwindDAC.cs",
-              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\DAC\\NorthwindDAC.cs",
+              "DocumentMoniker": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\DAC\\NorthwindDAC.cs",
               "RelativeDocumentMoniker": "ADO_DUI\\DAC\\NorthwindDAC.cs",
-              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\DAC\\NorthwindDAC.cs",
+              "ToolTip": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\demos\\ASP_PUT_Example\\ADO_DUI_PutExample\\ADO_DUI\\DAC\\NorthwindDAC.cs",
               "RelativeToolTip": "ADO_DUI\\DAC\\NorthwindDAC.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAAAMsAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAALcAAAAAAAAAAAAmwKMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-26T16:31:37.389Z",
               "EditorCaption": ""
