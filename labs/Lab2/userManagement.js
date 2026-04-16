@@ -5,14 +5,14 @@ $(document).ready(function () {
 
 function getUsers() {
         CallAjax("service.php",
-        "GET",
+        "GET",  
         {
             action: "getUsers"
         },
         "json",
         getUsersSuccess,
         ajaxError
-    );
+    );  
 }
 
 /**
