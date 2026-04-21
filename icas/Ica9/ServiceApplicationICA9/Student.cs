@@ -120,6 +120,9 @@ namespace ServiceApplicationICA8
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
 
+                        if (shid < 0)
+                            return "The school id canno be negative";
+
                         comm.ExecuteNonQuery();
                     }
 
@@ -168,9 +171,17 @@ namespace ServiceApplicationICA8
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
+                   
                     string query1 = $"INSERT INTO Students ( last_name,first_name,school_id) values ('{lname}', '{fname}', '{shid}')";
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
+
+                        if (lname.Length < 1)
+                            return "The last name cannot be null";
+                        else if (fname.Length < 1)
+                            return "The fisrt name cannot be null";
+                        else if (shid < 0)
+                            return "The school id cannot be negative";
                         comm.ExecuteNonQuery();
 
                     }

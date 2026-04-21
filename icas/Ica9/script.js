@@ -271,6 +271,7 @@ $(document).on("click", "#addStudentBtn", function () {
         },
         "json",
         function (response) {
+            $("#outputresform").html(response.message);
             CallAjax("https://localhost:7226",
                 "get",
                 {},
@@ -278,6 +279,7 @@ $(document).on("click", "#addStudentBtn", function () {
                 loadStudents,
                 ajaxError
             );
+           
         },
         ajaxError
     );

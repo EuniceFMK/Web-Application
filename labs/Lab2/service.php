@@ -42,6 +42,14 @@ if (isset($cleanPost["action"])) {
         UpdateRole($cleanPost["userId"], $cleanPost["roleId"]);
     if ($cleanPost["action"] == "DeleteUser")
         DeleteUser($cleanPost["userId"]);
+    if ($cleanGet["action"] == "getRoles")
+        GetRoles();
+
+    if ($cleanPost["action"] == "addRole")
+        AddRole($cleanPost["roleName"], $cleanPost["roleDesc"], $cleanPost["roleValue"]);
+
+    if ($cleanPost["action"] == "deleteRole")
+        DeleteRole($cleanPost["roleId"]);
 }
 
 if (isset($cleanGet["action"])) {
@@ -186,7 +194,7 @@ function RegisterByRoot($username, $password, $roleId)
 
     $results = mySqlQuery($query);
     $row = $results->fetch_assoc();
-    
+
 
     if (strlen($username) < 4) {
         $output["status"] = "Username too short";
@@ -327,4 +335,22 @@ function DeleteUser($userId)
         $output["status"] = "User deleted successfully";
         $output["valid"] = true;
     }
+}
+function GetRoles(){
+    global $output;
+    $res = mySqlQuery("SELECT * FROM Roles");
+    $output["roles"] = $res->fetch_all();
+}
+
+function AddRole($name, $desc, $value){
+    global $output;
+    mySqlNonQuery("INSERT INTO Roles (roleName, roleDescription, roleValue) 
+                   VALUES ('$name','$desc','$value')");
+    $output["status"] = "Role added";
+}
+
+function DeleteRole($id){
+    global $output;
+    mySqlNonQuery("DELETE FROM Roles WHERE roleId='$id'");
+    $output["status"] = "Role deleted";
 }

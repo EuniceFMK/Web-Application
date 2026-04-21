@@ -8,7 +8,7 @@ $(document).ready(() => {
 });
 
 /**
- * AJAX GENERIC FUNCTION (on garde la tienne 👍)
+ *
  */
 function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
     let ajaxOptions = {};
@@ -99,6 +99,7 @@ function getOrders() {
                         <td>${order.item}</td>
                         <td>${order.quantity}</td>
                         <td>${order.payment}</td>
+                        <td>${order.price}</td>
                     </tr>
                 `;
                 table.append(row);

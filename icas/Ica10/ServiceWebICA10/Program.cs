@@ -37,14 +37,14 @@ namespace ServiceWebICA6
                                     .ToList();
                     return results;
                 }
-            });
+            });  
 
             app.MapPost("/order", (OrderRequest req) =>
             {
                 using (var db = new Efmukamngadjou1RestaurantDbContext())
                 {
                     var results = db.Orders
-                        .Include(o => o.Location) // 🔥 important si relation
+                        .Include(o => o.Location) 
                         .Where(o => o.Cid == req.CustomerId
                                  && o.Location.LocationName == req.Location)
                         .Select(o => new
@@ -52,7 +52,8 @@ namespace ServiceWebICA6
                             orderId = o.OrderId,
                             item = o.Item.ItemName,
                             quantity = o.ItemCount,
-                            payment = o.PaymentMethod
+                            payment = o.PaymentMethod,
+                            price = o.Item.ItemPrice
                         })
                         .ToList();
 
@@ -63,7 +64,7 @@ namespace ServiceWebICA6
             app.Run();
         }
 
-        // 🔹 BON MODEL POUR ICA10
+       
         record OrderRequest(int CustomerId, string Location);
     }
 }

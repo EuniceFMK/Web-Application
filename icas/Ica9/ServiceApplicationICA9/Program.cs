@@ -52,7 +52,14 @@ namespace ServiceApplicationICA8
 
             app.MapPost("/add", (AddS record) =>
             {
-                string mess=Student.AddStudent(record.fname, record.lname, record.shid, record.classid);
+                string mess;
+                if (record.lname.Length < 1)
+                    mess= "The last name cannot be null";
+                else if (record.fname.Length < 1)
+                    mess = "The fisrt name cannot be null";
+                else if (record.shid < 0)
+                    mess = "The school id cannot be negative";
+                 else mess = Student.AddStudent(record.fname, record.lname, record.shid, record.classid);
                 return Results.Ok(new { students = Student.GetStudents(), message= mess });
             });
 
