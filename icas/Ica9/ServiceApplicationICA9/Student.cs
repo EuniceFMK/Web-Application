@@ -102,11 +102,11 @@ namespace ServiceApplicationICA8
             }
         }
 
-        return new {
-            success = totalRows > 0,
-    rows = totalRows,
-    message = totalRows > 0 ? "Deleted successfully" : "Student not found"
-};
+//         return new {
+//             success = totalRows > 0,
+//     rows = totalRows,
+//     message = totalRows > 0 ? "Deleted successfully" : "Student not found"
+// };
         public static string EditStudent(int id, string fname, string lname, int shid)
         {
             try
