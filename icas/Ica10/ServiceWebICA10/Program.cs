@@ -66,5 +66,6 @@ namespace ServiceWebICA6
 
        
         record OrderRequest(int CustomerId, string Location);
+        
     }
 }
