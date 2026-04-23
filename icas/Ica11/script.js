@@ -182,3 +182,4 @@ function placeOrder() {
         ajaxError
     );
 }
+//Scaffold-DbContext "Server=data.cnt.sast.ca,24680;Database=efmukamngadjou1_RestaurantDB;User Id=efmukamngadjou1;Password=Rachel1980@.;Encrypt=False;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
