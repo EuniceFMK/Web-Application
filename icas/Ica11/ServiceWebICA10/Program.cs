@@ -25,16 +25,17 @@ namespace ServiceWebICA6
 
             app.MapGet("/RetLocation", () =>
             {
-
                 using (var db = new Efmukamngadjou1RestaurantDbContext())
                 {
                     var results = db.Locations
-                                    .Select(x => new
-                                    {
-                                        Location = x.LocationName,
-                                    })
-                                    .OrderByDescending(x => x.Location)
-                                    .ToList();
+                        .Select(x => new
+                        {
+                            locationId = x.Locationid,
+                            locationName = x.LocationName
+                        })
+                        .OrderBy(x => x.locationName)
+                        .ToList();
+
                     return results;
                 }
             });
@@ -45,6 +46,7 @@ namespace ServiceWebICA6
                 {
                     var results = db.Orders
                         .Include(o => o.Location)
+                        .Include(o => o.Item)
                         .Where(o => o.Cid == req.CustomerId
                                  && o.Location.LocationName == req.Location)
                         .Select(o => new
@@ -67,21 +69,30 @@ namespace ServiceWebICA6
                 {
                     try
                     {
-                        if (db.Orders.Find(id) is Order o)
+                        var order = db.Orders
+                                  .FirstOrDefault(o => o.OrderId == id);
+
+                        if (order != null)
                         {
-                            db.Orders.Remove(o);
+                            db.Orders.Remove(order);
                             db.SaveChanges();
+
                             return Results.Ok(new
                             {
-                                message = "Order deleted Sucessfully"
+                                message = "Order deleted successfully"
                             });
                         }
+
                         return Results.NotFound(new { message = "Order not found" });
                     }
                     catch (Exception ex)
                     {
-                        db.ChangeTracker.Clear();
-                        return Results.Problem(ex.Message);
+                        Console.WriteLine(ex.ToString());
+
+                        return Results.BadRequest(new
+                        {
+                            message = ex.InnerException?.Message ?? ex.Message
+                        });
                     }
                 }
 
@@ -105,11 +116,45 @@ namespace ServiceWebICA6
             {
                 using (var db = new Efmukamngadjou1RestaurantDbContext())
                 {
-                    if(! db.Customers.Any(c=> c.Cid == req.CustomerId))
+                    if (!db.Customers.Any(c => c.Cid == req.CustomerId))
                     {
-                        return Results.BadRequest(new { message = "Invalid Customer ID" });
+                        return Results.Json(new
+                        {
+                            message = "Invalid Customer ID"
+                        }, statusCode: 400);
+                    }
+                    if (!db.Items.Any(i => i.Itemid == req.ItemId))
+                    {
+                        return Results.Json(new
+                        {
+                            message = "Invalid Selected item"
+                        }, statusCode: 400);
+                    }
+                    if (!db.Locations.Any(l => l.Locationid == req.LocationId))
+                    {
+                        return Results.Json(new
+                        {
+                            message = "Invalid Selected location"
+                        }, statusCode: 400);
                     }
 
+                    // Validation Quantity
+                    if (req.Quantity <= 0)
+                    {
+                        return Results.Json(new
+                        {
+                            message = "Invalid quantity"
+                        }, statusCode: 400);
+                    }
+
+                    // Validation Payment
+                    if (string.IsNullOrWhiteSpace(req.Payment))
+                    {
+                        return Results.Json(new
+                        {
+                            message = "Payment method required"
+                        }, statusCode: 400);
+                    }
                     Random rnd = new Random();
                     int pickup = rnd.Next(5, 31);
 
@@ -137,14 +182,17 @@ namespace ServiceWebICA6
                 using (var db = new Efmukamngadjou1RestaurantDbContext())
                 {
 
-                    if (db.Orders.Find(req.OrderId) is Order o)
-                    {
-                        o.Itemid = req.ItemId;
-                        o.ItemCount = req.Quantity;
-                        o.PaymentMethod = req.Payment;
+                    var order = db.Orders
+                                  .FirstOrDefault(o => o.OrderId == req.OrderId);
 
-                        db.Orders.Update(o);
+                    if (order != null)
+                    {
+                        order.Itemid = req.ItemId;
+                        order.ItemCount = req.Quantity;
+                        order.PaymentMethod = req.Payment;
+
                         db.SaveChanges();
+
                         return Results.Ok(new
                         {
                             message = "Order updated successfully"

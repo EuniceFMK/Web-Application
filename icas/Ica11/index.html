@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Tim Hortons Orders</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
 
     <h1 id="header">Tim Hortons</h1>
@@ -47,61 +49,63 @@
         </thead>
         <tbody></tbody>
     </table>
-<!-- Add New Order Form -->
-<div class="container" id="addOrderSection">
-    <h2>Place New Order</h2>
+    <!-- Add New Order Form -->
+    <div class="container" id="addOrderSection">
+        <h2>Place New Order</h2>
 
-    <!-- Customer ID -->
-    <div class="form-group">
-        <label for="newCustomerId">Customer ID:</label>
-        <input type="number" id="newCustomerId" placeholder="Enter Customer ID">
+        <!-- Customer ID -->
+        <div class="form-group">
+            <label for="newCustomerId">Customer ID:</label>
+            <input type="number" id="newCustomerId" placeholder="Enter Customer ID">
+        </div>
+
+        <!-- Item Dropdown -->
+        <div class="form-group">
+            <label for="itemId">Item Ordered:</label>
+            <select id="itemId">
+                <option value="">Loading Items...</option>
+            </select>
+        </div>
+
+        <!-- Quantity -->
+        <div class="form-group">
+            <label for="quantity">How Many Items:</label>
+            <input type="number" id="quantity" min="1" placeholder="Enter Quantity">
+        </div>
+
+        <!-- Payment Method -->
+        <div class="form-group">
+            <label for="payment">Payment Method:</label>
+            <select id="payment">
+                <option value="">Select Payment</option>
+                <option value="Cash">Cash</option>
+                <option value="Debit">Debit</option>
+                <option value="Credit Card">Credit Card</option>
+            </select>
+        </div>
+
+        <!-- Pickup Location -->
+        <div class="form-group">
+            <label for="newLocation">Pickup Location:</label>
+            <select id="newLocation">
+                <option value="">Loading Locations...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Order ID:</label>
+            <input type="number" id="orderId" readonly>
+        </div>
+
+        <!-- Button changes from Place Order to Update Order -->
+        <button id="placeOrderBtn">Place Order</button>
+
+        <!-- Confirmation Message -->
+        <div id="orderConfirmation"></div>
     </div>
 
-    <!-- Item Dropdown -->
-    <div class="form-group">
-        <label for="itemId">Item Ordered:</label>
-        <select id="itemId">
-            <option value="">Loading Items...</option>
-        </select>
-    </div>
-
-    <!-- Quantity -->
-    <div class="form-group">
-        <label for="quantity">How Many Items:</label>
-        <input type="number" id="quantity" min="1" placeholder="Enter Quantity">
-    </div>
-
-    <!-- Payment Method -->
-    <div class="form-group">
-        <label for="payment">Payment Method:</label>
-        <select id="payment">
-            <option value="">Select Payment</option>
-            <option value="Cash">Cash</option>
-            <option value="Debit">Debit</option>
-            <option value="Credit Card">Credit Card</option>
-        </select>
-    </div>
-
-    <!-- Pickup Location -->
-    <div class="form-group">
-        <label for="newLocation">Pickup Location:</label>
-        <select id="newLocation">
-            <option value="">Loading Locations...</option>
-        </select>
-    </div>
-
-    <!-- Hidden Order ID for Update -->
-    <input type="hidden" id="orderId">
-
-    <!-- Button changes from Place Order to Update Order -->
-    <button id="placeOrderBtn">Place Order</button>
-
-    <!-- Confirmation Message -->
-    <div id="orderConfirmation"></div>
-</div>
-
-    <!-- JS -->
+    <!-- JS -->  
     <script src="script.js"></script>
 
 </body>
+
 </html>

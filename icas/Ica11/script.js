@@ -3,9 +3,19 @@ let API = "https://localhost:7057";
 $(document).ready(() => {
 
     loadLocations();
+    loadItems();
+
 
     $("#getOrdersBtn").click(getOrders);
-      $("#placeOrderBtn").click(placeOrder);
+    $("#placeOrderBtn").click(function () {
+
+        if ($(this).text() === "Place Order") {
+            placeOrder();
+        }
+        else {
+            updateOrder();
+        }
+    });
 });
 
 /**
@@ -16,12 +26,12 @@ function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
     ajaxOptions["url"] = url;
     ajaxOptions["method"] = method;
 
-    if (method == "get")
-        ajaxOptions["data"] = data;
-
-    if (method == "post"|| method == "put" || method == "delete") {
-        ajaxOptions["data"] = JSON.stringify(data);
-        ajaxOptions["contentType"] = "application/json";
+    if (method.toLowerCase() === "get") {
+        ajaxOptions.data = data;
+    }
+    else {
+        ajaxOptions.data = JSON.stringify(data);
+        ajaxOptions.contentType = "application/json; charset=utf-8";
     }
 
     ajaxOptions["dataType"] = dataType;
@@ -32,7 +42,9 @@ function CallAjax(url, method, data, dataType, successCallback, errorCallback) {
 }
 
 function ajaxError(req, status, err) {
-    console.log("Ajax error", err);
+    console.log("STATUS:", status);
+    console.log("ERROR:", err);
+    console.log("RESPONSE:", req.responseText);
 }
 
 /**
@@ -49,10 +61,15 @@ function loadLocations() {
             let options = `<option value="">Select Location</option>`;
 
             response.forEach(loc => {
-                options += `<option value="${loc.location}">${loc.location}</option>`;
+                options += `
+                    <option value="${loc.locationId}">
+                        ${loc.locationName}
+                    </option>
+                `;
             });
 
             $("#location").html(options);
+            $("#newLocation").html(options);
         },
         ajaxError
     );
@@ -118,7 +135,7 @@ function getOrders() {
                         <td>${order.quantity}</td>
                         <td>${order.payment}</td>
                         <td>${order.price}</td>
-                        <td>
+                      <td>
    <button onclick="deleteOrder(${order.orderId})">
       Delete
    </button>
@@ -135,7 +152,7 @@ function getOrders() {
 }
 function deleteOrder(id) {
     CallAjax(API + "/deleteOrder/" + id,
-        "delete",
+        "DELETE",
         {},
         "json",
         function (response) {
@@ -153,9 +170,35 @@ function placeOrder() {
     let payment = $("#payment").val();
     let locationId = $("#newLocation").val();
 
+    console.log({
+        customerId,
+        itemId,
+        quantity,
+        payment,
+        locationId
+    });
     if (customerId === "") {
         alert("Customer ID is required");
-        $("#newCustomerId").focus();
+        return;
+    }
+
+    if (itemId === "") {
+        alert("Please select an item");
+        return;
+    }
+
+    if (locationId === "") {
+        alert("Please select a pickup location");
+        return;
+    }
+
+    if (quantity === "" || parseInt(quantity) <= 0) {
+        alert("Quantity must be greater than 0");
+        return;
+    }
+
+    if (payment.trim() === "") {
+        alert("Payment method is required");
         return;
     }
 
@@ -172,14 +215,71 @@ function placeOrder() {
         function (response) {
             $("#orderConfirmation").html(
                 `Order placed successfully!<br>
-                 Order ID: ${response.orderId}<br>
-                 Estimated Pickup: ${response.estimatedPickup}`
+         Order ID: ${response.orderId}<br>
+         Estimated Pickup: ${response.estimatedPickup}`
             );
 
             $("#placeOrderBtn").text("Update Order");
+
             $("#orderId").val(response.orderId);
+
+            $("#newCustomerId").prop("disabled", true);
+            $("#newLocation").prop("disabled", true);
+            $("#orderId").prop("disabled", true);
         },
         ajaxError
+    );
+}
+function updateOrder() {
+
+    let orderId = parseInt($("#orderId").val());
+    let itemId = parseInt($("#itemId").val());
+    let quantity = parseInt($("#quantity").val());
+    let payment = $("#payment").val();
+
+    console.log("UPDATE REQUEST SENT:", JSON.stringify({
+        orderId,
+        itemId,
+        quantity,
+        payment
+    }));
+    if (!orderId || orderId <= 0) {
+        alert("Order ID is missing. Please place an order first.");
+        return;
+    }
+
+    if (!itemId) {
+        alert("Please select item");
+        return;
+    }
+
+    if (!quantity || quantity <= 0) {
+        alert("Quantity must be greater than 0");
+        return;
+    }
+
+    if (!payment || payment.trim() === "") {
+        alert("Payment method is required");
+        return;
+    }
+
+    CallAjax(API + "/updateOrder",
+        "PUT",
+        {
+            orderId: orderId,
+            itemId: itemId,
+            quantity: quantity,
+            payment: payment
+        },
+        "json",
+        function (response) {
+            $("#orderConfirmation").html(response.message);
+        },
+        function (req, status, err) {
+            console.log("SERVER RESPONSE:", req.responseText);
+            console.log("STATUS:", status);
+            console.log("ERROR:", err);
+        }
     );
 }
 //Scaffold-DbContext "Server=data.cnt.sast.ca,24680;Database=efmukamngadjou1_RestaurantDB;User Id=efmukamngadjou1;Password=Rachel1980@.;Encrypt=False;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
