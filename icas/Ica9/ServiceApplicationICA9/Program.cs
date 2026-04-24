@@ -1,6 +1,7 @@
 using ServiceApplicationICA8;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 namespace ServiceApplicationICA8
 {
     public class Program
@@ -53,9 +54,9 @@ namespace ServiceApplicationICA8
             app.MapPost("/add", (AddS record) =>
             {
                 string mess;
-                if (record.lname.Length < 1)
+                if (string.IsNullOrWhiteSpace(record.lname))
                     mess= "The last name cannot be null";
-                else if (record.fname.Length < 1)
+                else if (string.IsNullOrWhiteSpace(record.fname))
                     mess = "The fisrt name cannot be null";
                 else if (record.shid < 0)
                     mess = "The school id cannot be negative";

@@ -261,6 +261,26 @@ $(document).on("click", "#addStudentBtn", function () {
     let newlname = $("#lnInput").val();
     let newsid = $("#shId").val();
     let classid = $("#cID").val();
+    if(newfname =="")
+    {
+        $("#outputresform").html("The firstname cannot be null");
+        return;
+    }
+    if(newlname =="")
+    {
+        $("#outputresform").html("The lastname  cannot be null");
+        return;
+    }
+     if((isNaN(newsid)) || (newsid<=0))
+    {
+        $("#outputresform").html("Enter a valid school id");
+        return;
+    }
+     if(classid=="Choose a class ID")
+    {
+        $("#outputresform").html("Enter a valid CLASS ID");
+        return;
+    }
     CallAjax(`https://localhost:7226/add`,
         "POST",
         {

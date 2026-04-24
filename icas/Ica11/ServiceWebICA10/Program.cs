@@ -48,7 +48,7 @@ namespace ServiceWebICA6
                         .Include(o => o.Location)
                         .Include(o => o.Item)
                         .Where(o => o.Cid == req.CustomerId
-                                 && o.Location.LocationName == req.Location)
+                                 && o.Locationid == req.Location)
                         .Select(o => new
                         {
                             orderId = o.OrderId,
@@ -210,6 +210,6 @@ namespace ServiceWebICA6
 
         record NewOrderRequest(int CustomerId, int ItemId, int Quantity, string Payment, int LocationId);
         record UpdateOrderRequest(int OrderId, int ItemId, int Quantity, string Payment);
-        record OrderRequest(int CustomerId, string Location);
+        record OrderRequest(int CustomerId, int Location);
     }
 }

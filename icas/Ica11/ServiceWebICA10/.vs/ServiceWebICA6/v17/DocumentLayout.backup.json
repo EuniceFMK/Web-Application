@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\",
+  "WorkspaceRootPath": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\icas\\ica11\\servicewebica10\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|c:\\users\\efmukamngadjou1\\desktop\\cmpe2000\\web-application\\icas\\ica11\\servicewebica10\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\icas\\ica11\\servicewebica10\\models\\efmukamngadjou1restaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|c:\\users\\efmukamngadjou1\\desktop\\cmpe2000\\web-application\\icas\\ica11\\servicewebica10\\models\\efmukamngadjou1restaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|solutionrelative:models\\efmukamngadjou1restaurantdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\icas\\ica11\\servicewebica10\\rest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|c:\\users\\efmukamngadjou1\\desktop\\cmpe2000\\web-application\\icas\\ica11\\servicewebica10\\rest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED3E3870-04C8-4F7E-8D1A-183186D6CB9B}|ServiceWebICA6.csproj|solutionrelative:rest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Program.cs*",
-              "RelativeToolTip": "Program.cs*",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAYwM0AAAAPAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAgwNQAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-22T23:11:35.787Z",
               "EditorCaption": ""
@@ -41,9 +41,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Efmukamngadjou1RestaurantDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Models\\Efmukamngadjou1RestaurantDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Models\\Efmukamngadjou1RestaurantDbContext.cs",
               "RelativeDocumentMoniker": "Models\\Efmukamngadjou1RestaurantDbContext.cs",
-              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Models\\Efmukamngadjou1RestaurantDbContext.cs",
+              "ToolTip": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Models\\Efmukamngadjou1RestaurantDbContext.cs",
               "RelativeToolTip": "Models\\Efmukamngadjou1RestaurantDbContext.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAIwHQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -53,9 +53,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Rest.cs",
-              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Rest.cs",
+              "DocumentMoniker": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Rest.cs",
               "RelativeDocumentMoniker": "Rest.cs",
-              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Rest.cs",
+              "ToolTip": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica11\\ServiceWebICA10\\Rest.cs",
               "RelativeToolTip": "Rest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

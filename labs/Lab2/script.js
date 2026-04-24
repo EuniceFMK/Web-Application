@@ -87,7 +87,7 @@ function successLogin(response) {
     $("#message").hide();
     if (response.status == "Login successful") {
 
-        if (response.role == "admin") {
+        if (response.role == "Admin") {
             window.location.href = "userManagement.php";
         }
         else if (response.role == "root") {

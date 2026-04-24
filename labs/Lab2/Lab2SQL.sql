@@ -83,12 +83,12 @@ CREATE TABLE UsersRoles
 
 INSERT INTO Roles (roleName, roleDescription, roleValue)
 VALUES 
-('Root', 'Full system control', 100),
-('Admin', 'Administrative access', 50),
-('Member', 'Basic user role', 1);
+('Root', 'Full system control', 1),
+('Admin', 'Administrative access', 2),
+('Member', 'Basic user role', 3);
 
 INSERT INTO Users (userName, uPassword)
-VALUES ('root', '$2y$10$8LKA5sLgYYmdLafQRnKkTOqOTEIRcWzEDGehK3Q7sXmMNWWJdLfTi');
+VALUES ('root', '$2b$10$qFOlG/rTPlM/DqJBEwE7huSzalvLsbNJg2qCAs072D5870/e3Rmka');
 
 INSERT INTO UsersRoles (userId, roleId)
 VALUES (1, 1);

@@ -176,9 +176,9 @@ namespace ServiceApplicationICA8
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
 
-                        if (lname.Length < 1)
+                        if (string.IsNullOrWhiteSpace(lname))
                             return "The last name cannot be null";
-                        else if (fname.Length < 1)
+                        else if (string.IsNullOrWhiteSpace(fname))
                             return "The fisrt name cannot be null";
                         else if (shid < 0)
                             return "The school id cannot be negative";
