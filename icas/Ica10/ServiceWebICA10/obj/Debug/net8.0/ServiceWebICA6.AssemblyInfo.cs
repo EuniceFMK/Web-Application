@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServiceWebICA6")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88565a2993b900144c1bdefad3d14cbd2351dd45")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b2fba2c3977ad8c5a34f90a8ef452d615a05710")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServiceWebICA6")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServiceWebICA6")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

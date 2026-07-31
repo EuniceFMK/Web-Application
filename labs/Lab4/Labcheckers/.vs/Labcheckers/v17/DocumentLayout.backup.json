@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\labs\\Lab4\\Labcheckers\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{93D92BF7-9936-416E-AD02-AF2E641B353F}|Labcheckers.csproj|c:\\users\\hp\\onedrive - c\u00E9gep de valleyfield\\bureau\\nait stuff\\term 3\\web-application\\labs\\lab4\\labcheckers\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93D92BF7-9936-416E-AD02-AF2E641B353F}|Labcheckers.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\labs\\Lab4\\Labcheckers\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\hp\\OneDrive - C\u00E9gep de Valleyfield\\Bureau\\NAIT STUFF\\Term 3\\Web-Application\\labs\\Lab4\\Labcheckers\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACIBAAAAAAAAAAAYwD0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T18:38:14.558Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

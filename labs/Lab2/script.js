@@ -40,10 +40,13 @@ function ajaxError(req, status, err) {
 }
 
 function Registration() {
+    let username = $("#username").val();
+    let password = $("#password").val();
     if (username.length < 4) {
         alert("Username must be at least 4 characters");
         return;
     }
+
 
     if (password.length < 6) {
         alert("Password must be at least 6 characters");
@@ -87,11 +90,11 @@ function successLogin(response) {
     $("#message").hide();
     if (response.status == "Login successful") {
 
-        if (response.role == "Admin") {
-            window.location.href = "userManagement.php";
+        if (response.role == "admin") {
+            window.location.href = "dashboard.php";
         }
         else if (response.role == "root") {
-            window.location.href = "userManagement.php";
+            window.location.href = "dashboard.php";
         }
         else if (response.role == "member") {
             window.location.href = "user.php";

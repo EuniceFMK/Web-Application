@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\efmukamngadjou1\\Desktop\\cmpe2000\\Web-Application\\icas\\Ica10\\ServiceWebICA10\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAASwBkAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-22T23:11:35.787Z",
               "EditorCaption": ""
@@ -47,8 +47,7 @@
               "RelativeToolTip": "Models\\Efmukamngadjou1RestaurantDbContext.cs",
               "ViewState": "AgIAAEAAAAAAAAAAAAAYwF0AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T18:48:12.068Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T18:48:12.068Z"
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "Rest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T00:12:22.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-20T00:12:22.121Z"
             }
           ]
         }

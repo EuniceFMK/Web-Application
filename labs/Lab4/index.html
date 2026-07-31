@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkers Game</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="checkers.js"></script>
+</head>
+<body>
+
+    <h1>Checkers Game</h1>
+
+    <label id="message">Enter player names</label>
+    <br><br>
+
+    <input type="text" id="player1" placeholder="Player A">
+    <input type="text" id="player2" placeholder="Player B">
+
+    <br><br>
+
+    <button id="newGameBtn">New Game</button>
+    <button id="quitGameBtn">Quit Game</button>
+    <button id="doubleTurnBtn" style="display:none;">
+        Claim Double Turn
+    </button>
+    <h3 id="turnLabel"></h3>
+    <button id="reviewBtn" style="display:none;">
+        Review Game
+    </button>
+
+    <br><br>
+
+    <div id="board"></div>
+
+</body>
+</html>

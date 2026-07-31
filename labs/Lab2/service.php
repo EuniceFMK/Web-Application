@@ -42,8 +42,7 @@ if (isset($cleanPost["action"])) {
         UpdateRole($cleanPost["userId"], $cleanPost["roleId"]);
     if ($cleanPost["action"] == "DeleteUser")
         DeleteUser($cleanPost["userId"]);
-    if ($cleanGet["action"] == "getRoles")
-        GetRoles();
+   
 
     if ($cleanPost["action"] == "addRole")
         AddRole($cleanPost["roleName"], $cleanPost["roleDesc"], $cleanPost["roleValue"]);
@@ -53,10 +52,13 @@ if (isset($cleanPost["action"])) {
 }
 
 if (isset($cleanGet["action"])) {
+
     if ($cleanGet["action"] == "getUsers")
         GetUsers();
-}
 
+    if ($cleanGet["action"] == "getRoles")
+        GetRoles();
+}
 
 echo (json_encode($output));
 die();
@@ -272,7 +274,7 @@ function UpdateRole($userId, $roleId)
         return;
     }
 
-    if ($currentRoleValue <= $roleId) {
+    if ($currentRoleValue >= $roleId) {
         $output["status"] = "You cannot assign a role equal or higher than your own";
         $output["valid"] = false;
         return;
